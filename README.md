@@ -1,4 +1,4 @@
-#Notification for User churn in Transparent Classroom
+# Notification for User churn in Transparent Classroom
  
 Clear research question:
 What are the inferential relationships between user interaction and eventual cutoff. Can we warn them to get them back on track?
