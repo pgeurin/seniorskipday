@@ -1,0 +1,8 @@
+
+make tc_early_notification repo
+look at cristy's data
+upload eta graphs bit by bit
+make data differentitiationer (down for three weeks)
+make histogram of how long out before gone for at least one semester
+Make video showing a time series of classpostings in 'real time' going up/down to give context in presentation.
+Make model predicting this user loss.
