@@ -26,7 +26,14 @@ I haven’t learned time series methods yet. I’m hoping to learn something qui
 There are only 30 users who’ve left the company. So churn isn’t the correct measurement in this case. Schools discontinue their accounts (one year long). But teachers don’t have a direct say. Teacher decreased use is theorized to be related to decrease of use. Instead we’ll be using the their pre-set metric “health score” which is a amalgamation of five metrics (given in code)
 We’ll see how many stopped meeting this score.
 
-![Example Teacher 3 Posts](img/sessions.png)
+![Histograms Post Since Certain Days](img/days_with_one_post_since_feb_15_2018.png)
+![Histograms Post Since Certain Days](img/log_days_with_one_post_since_feb_15_2018.png)
+![Histograms Post Since Certain Days](img/days_with_one_post_since_feb_15_2011.png)
+![Histograms Post Since Certain Days](img/log_days_with_one_post_since_feb_15_2011.png)
+![Histograms Post Since Certain Days](img/hist_post_since_jan_15_2018.png)
+![Histograms Post Since Certain Days](img/hist_log_post_since_jan_15_2018.png)
+![Histograms Post Since Certain Days](img/hist_post_since_feb_15_2011.png)
+![Histograms Post Since Certain Days](img/hist_log_post_since_feb_15_2011.png)
 
 ### What is the MVP?
 
@@ -35,6 +42,12 @@ A python model that gives a prediction if the users will stop using the service 
 ### Causal Inference:
 Yes, this is a risk as we don’t have time to make a test just yet. The client is OK with this.
 
+An assistive goal would be to compare the use dropoff with the 30 churns results to decide which method is best: 
+
+These are the subscription renewals:
+
+![Session Line Plot](img/session_line_plot.png)
+
 ### Prior art:
-Yes, this is well covered. I haven’t found ways of quantifiying yet.
+Yes, this is well covered. I haven’t found ways of quantifying yet.
 Yes. Prelim research returned that it is, but no common variable have been determined by me yet.
