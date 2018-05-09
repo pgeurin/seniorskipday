@@ -13,7 +13,7 @@ def plot_days_with_not_zero_posts_since(posts, date):
     ax.set_ylabel("# of classes")
     ax.set_xlabel("# of days")
     plt.show()
-    return None 
+    return None
 
 
 def plot_log_days_with_not_zero_posts_since(posts, date):
