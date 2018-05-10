@@ -37,13 +37,17 @@ def log_days_with_not_zero_posts_between(posts, date1, date2):
     days_one_post_in_last_month['exists_days_one_post_in_last_month'] = np.log(days_one_post_in_last_month['exists_days_one_post_in_last_month']+1)
     return days_one_post_in_last_month
 
-posts.groupby(pd.Grouper(freq="M"), as_index=False).count()
+def main():
+    posts.groupby(pd.Grouper(freq="M"), as_index=False).count()
 
-posts.groupby([(posts['date'].year),(posts['date'].month)]).sum()
+    posts.groupby([(posts['date'].year),(posts['date'].month)]).sum()
 
-# months = "jan, feb, mar, april, may, june, july, aug, sept, oct, nov, dec".split(',')
-# for classroom_id in posts['classroom_id'].unique():
-#     for year in range(2011,2018)
-#         for i_month in range(months):
-#             posts_between(posts, date1=pd.datetime(str(year) + months[i_month]), date2=)
-#             plot_days_with_not_zero_posts_between(posts, date1, date2)
+    # months = "jan, feb, mar, april, may, june, july, aug, sept, oct, nov, dec".split(',')
+    # for classroom_id in posts['classroom_id'].unique():
+    #     for year in range(2011,2018)
+    #         for i_month in range(months):
+    #             posts_between(posts, date1=pd.datetime(str(year) + months[i_month]), date2=)
+    #             plot_days_with_not_zero_posts_between(posts, date1, date2)
+
+if __name__ == '__main__':
+    main()
