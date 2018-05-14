@@ -7,7 +7,7 @@ def posts_between(posts, date1, date2):
     last_month_posts = posts[(date1 < posts['date']) & (posts['date'] < date2)].groupby('classroom_id').count()
     num_posts_by_class = posts.groupby('classroom_id').sum()
     last_month_posts_total= num_posts_by_class.join(last_month_posts, how='left', lsuffix='_num_posts_by_class', rsuffix='_last_month_posts')
-    last_month_posts_total.loc[last_month_posts_total['id_last_month_posts'].isnull(),'exists_last_month_posts'] =0
+    last_month_posts_total.loc[last_month_posts_total['post_id_last_month_posts'].isnull(),'exists_last_month_posts'] = 0
     return last_month_posts_total
 
 def log_posts_between(posts, date1, date2):
