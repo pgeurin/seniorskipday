@@ -67,8 +67,8 @@ def index():
     n = 100
     x = range(n)
     y = [random() for i in x]
-    return render_template('index_classrooms_in_danger.html', data=zip(x,y))
-    return render_template('index_classrooms_in_danger.html', data=lists_danger_classrooms)
+    # return render_template('index_classrooms_in_danger.html', data=zip(x,y))
+    return render_template('index_classrooms_in_danger.html', data=lists_danger_classrooms, columns=list(danger_classrooms.columns))
 
 @app.route('/hello')
 def hello_world():
