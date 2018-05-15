@@ -1,18 +1,21 @@
 from flask import Flask, render_template
 import psycopg2
 
-from load_data import process_data
-from build_rf import FraudDetector
+# from load_data import process_data
+# from build_rf import FraudDetector
 import pickle
-
+import pandas as pd
 from random import random
 import matplotlib.pyplot as plt
 from io import BytesIO
 
 app = Flask(__name__)
-conn = psycopg2.connect(dbname='meetglow', user='cds', password='consulting', host='localhost')
-cursor = conn.cursor()
+# conn = psycopg2.connect(dbname='meetglow', user='macbookpro', password='consulting', host='localhost')
+# conn = psycopg2.connect(dbname='meetglow', user='cds', password='consulting', host='localhost')
+# cursor = conn.cursor()
 
+danger_classrooms = pd.read_csv('../data/danger_classrooms.csv')
+lists_danger_classrooms = [list(danger_classrooms[i].values) for i in danger_classrooms]
 def insert_livedata(event_data):
 	cols = []
 	vals = []
@@ -56,7 +59,7 @@ def get_data():
         return predicted_events
 
 # load the model
-model = pickle.load(open("../static/fd.pkl", "rb"))
+# model = pickle.load(open("../static/fd.pkl", "rb"))
 
 
 @app.route('/')
@@ -64,8 +67,8 @@ def index():
     n = 100
     x = range(n)
     y = [random() for i in x]
-    return render_template('table.html', data=zip(x, y))
-
+    return render_template('index_classrooms_in_danger.html', data=zip(x,y))
+    return render_template('index_classrooms_in_danger.html', data=lists_danger_classrooms)
 
 @app.route('/hello')
 def hello_world():
