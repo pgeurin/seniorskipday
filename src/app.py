@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import psycopg2
+# import psycopg2
 
 # from load_data import process_data
 # from build_rf import FraudDetector
