@@ -1,0 +1,17 @@
+<h2>Here's my plot!</h2>
+<img src='/plot.png'>
+
+<table border="1">
+  <thead>
+    <th>x</th>
+    <th>y</th>
+  </thead>
+  <tbody>
+    {% for x, y in data %}  <!--start for loop over variable data-->
+      <tr>                  <!-- on each row -->
+        <td>{{ x }}</td>    <!-- write variable x -->
+        <td>{{ y }}</td>    <!-- write variable y -->
+    </tr>                   <!-- end the row -->
+    {% endfor %}            <!-- end for loop -->
+</tbody>
+</table>

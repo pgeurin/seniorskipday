@@ -1,0 +1,11 @@
+Make tc_early_notification repo
+Look at cristy's data
+Upload eta graphs bit by bit
+make feature: is_down (down for three weeks)
+make feature: hearts
+make list of features we'll have beforehand.
+calculate the median
+combine datasets for posts
+make histogram of how long out before gone for at least one semester
+Make video showing a time series of classpostings in 'real time' going up/down to give context in presentation.
+Make model predicting this user loss.
