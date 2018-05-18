@@ -19,10 +19,19 @@ def make_sparkline(sum_post, classroom_id=77):
     ax[0].scatter(sum_post[sum_post['classroom_id'] == classroom_id]['date'].values, sum_post[sum_post['classroom_id']==classroom_id]['exists'])
     ax[1].plot(sum_post[sum_post['classroom_id'] == classroom_id]['date'], sum_post[sum_post['classroom_id']==classroom_id]['exists'])
     ax[0].set_title(f"Class {classroom_id} log(posts)")
+    # plt.savefig(f'../img/sparklines/sparkline_{classroom_id}.png')
+    # plt.savefig(f'../img/sparklines/sparkline_{classroom_id}_thumb.png', dpi=30)
+    # plt.close(fig)
     plt.show()
     return None
 
 def make_all_sparklines(sum_post):
+    for classroom_id in sum_post['classroom_id'].unique():
+        make_sparkline(sum_post, classroom_id=classroom_id)
+        # plt.show()
+    return None
+
+def save_all_sparklines(sum_post):
     for classroom_id in sum_post['classroom_id'].unique()[0:30]:
         make_sparkline(sum_post, classroom_id=classroom_id)
         plt.show()

@@ -68,11 +68,7 @@
               {% for title in columns %}
               <th>{{title}}</th>
               {% endfor %}
-              <th>Class Id</th>
-              <th>Name</th>
-              <th>Out for:</th>
-              <th>Stalled at:</th>
-              <th>Analytics</th>
+              <th>sparkline</th>
               <th>Heart Rating</th>
             </tr>
           </thead>
@@ -83,10 +79,11 @@
               <td>{{col_item}}</td>
 
               {% endfor %}
-
+              <td><img src='https://s3-us-west-2.amazonaws.com/sparklines/sparklines/sparkline_1000_thumb.png' alt="Sparkline 1"></td>
+              <td><img src='https://s3-us-west-2.amazonaws.com/sparklines/sparklines/sparkline_1.png' alt="Sparkline 1"></td>
             </tr>
             {% endfor %}
-              <tr data-toggle="collapse" data-target="#Row1" class="clickable">
+            <tr data-toggle="collapse" data-target="#Row1" class="clickable">
               <td>001</td>
               <td>Minerva McGonagall, Minerva McGonagall, Minerva McGonagall, Minerva McGonagall, Minerva McGonagall, Minerva McGonagall, Minerva McGonagall, Minerva McGonagall, Minerva McGonagall, Minerva McGonagall, Minerva McGonagall</td>
               <td>6 weeks, 3 days</td>
@@ -95,137 +92,6 @@
               <td>
                 <i class="fas fa-heart"></i>
                 <i class="fas fa-heart"></i>
-              </td>
-            </tr>         <!-- end for loop -->
-            <tr>
-              <td colspan="12">
-              <div class="collapse" id="Row1">
-                <div class="card" style="width: 54rem;">
-                  <img class="card-img-top" src="https://placeimg.com/500/180/people/grayscale" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Hidden by default</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-                <div id="Row1" class="collapse">Hidden by default</div>
-              </div>
-            </td>
-            </tr>
-            <tr data-toggle="collapse" data-target="#Row2" class="clickable">
-              <td>002</td>
-              <td>Kesuke Miyagi</td>
-              <td>9 weeks</td>
-              <td>10th Tutorial</td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-chart-line"></i></button></td>
-              <td>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="12">
-                <div class="collapse col-sm-6 col-md-6 col-xs-6" id="Row2">
-                  <div class="thumbnail" style="border:none; background:white;">
-                    <div class="col-sm-6 col-md-6 col-xs-12 image-container">
-                      <img src="https://placeimg.com/50/50/people/grayscale" style="height:200px; margin-left:-15px;" />
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-xs-12">
-                      <h3>Hello World</h3>
-                      <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam placerat, velit a fermentum fermentum, mi felis vehicula justo, a dapibus quam augue non massa.   </p>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div id="Row2" class="collapse">Hidden by default</div> -->
-              </td>
-            </tr>
-            <tr data-toggle="collapse" data-target="#Row3" class="clickable">
-              <td>003</td>
-              <td>John Keating</td>
-              <td>4 weeks</td>
-              <td>3rd Tutorial</td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-chart-line"></i></button></td>
-              <td>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3">
-                <div id="Row3" class="collapse">Hidden by default</div>
-              </td>
-            </tr>
-            <tr data-toggle="collapse" data-target="#Row5" class="clickable">
-              <td>004</td>
-              <td>Charles Xavier</td>
-              <td>2 weeks, 6 days</td>
-              <td>1st Tutorial</td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-chart-line"></i></button></td>
-              <td>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3">
-                <div id="Row5" class="collapse">Hidden by default</div>
-              </td>
-            </tr>
-            <tr data-toggle="collapse" data-target="#Row6" class="clickable">
-              <td>005</td>
-              <td>Sean Maguire</td>
-              <td>3 weeks, 3 days</td>
-              <td>6th Tutorial</td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-chart-line"></i></button></td>
-              <td>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3">
-                <div id="Row6" class="collapse">Hidden by default</div>
-              </td>
-            </tr>
-            <tr data-toggle="collapse" data-target="#Row7" class="clickable">
-              <td>006</td>
-              <td>George Feeny</td>
-              <td>15 weeks</td>
-              <td>2nd Tutorial</td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-chart-line"></i></button></td>
-              <td>
-                <i class="fas fa-heart"></i>
-
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3">
-                <div id="Row7" class="collapse">Hidden by default</div>
-              </td>
-            </tr>
-            <tr data-toggle="collapse" data-target="#Row8" class="clickable">
-              <td>007</td>
-              <td>Glenn Holland</td>
-              <td>7 weeks, 3 days</td>
-              <td>5th Tutorial</td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-chart-line"></i></button></td>
-              <td>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3">
-                <div id="Row8" class="collapse">Hidden by default</div>
               </td>
             </tr>
           </tbody>
@@ -329,7 +195,7 @@
 
 
       <footer>
-        <p>&copy; Meetglow 2018</p>
+        <p>&copy; TC 2018</p>
       </footer>
 
 
