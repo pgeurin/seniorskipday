@@ -39,6 +39,7 @@ def insert_livedata(event_data):
 	cursor.execute (sql)
 	conn.commit()
 
+
 def get_data():
         predicted_events = []
         cursor.execute (''' select object_id, name, org_name, org_desc, event_start, event_created, payee_name, venue_address, venue_name, predict_proba  from live_data; ''')
@@ -56,7 +57,6 @@ def get_data():
 	        event['venue_name'] = row[8]
 	        event['predict_proba'] = row[9]
 	        predicted_events.append(event)
-
         return predicted_events
 
 # load the model
@@ -65,15 +65,7 @@ def get_data():
 
 @app.route('/')
 def index():
-    n = 100
-    x = range(n)
-    y = [random() for i in x]
-    # return render_template('index_classrooms_in_danger.html', data=zip(x,y))
     return render_template('index_classrooms_in_danger.html', data=zip(*lists_classroom_stats), columns=list(classroom_stats.columns))
-
-@app.route('/hello')
-def hello_world():
-    return 'Hello, World!'
 
 
 @app.route('/score/{event_data}')
