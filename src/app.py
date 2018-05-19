@@ -15,8 +15,8 @@ app = Flask(__name__)
 # cursor = conn.cursor()
 
 classroom_stats = pd.read_csv('../data/classroom_stats.csv')
-
 lists_classroom_stats = [list(classroom_stats[i].values) for i in classroom_stats]
+
 def insert_livedata(event_data):
 	cols = []
 	vals = []
@@ -65,9 +65,6 @@ def get_data():
 
 @app.route('/')
 def index():
-    n = 100
-    x = range(n)
-    y = [random() for i in x]
     # return render_template('index_classrooms_in_danger.html', data=zip(x,y))
     return render_template('index_classrooms_in_danger.html', data=zip(*lists_classroom_stats), columns=list(classroom_stats.columns))
 
