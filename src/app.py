@@ -26,7 +26,8 @@ def index():
 def get_search():
     user_data = request.json
     classroom_id = user_data['classroom_id']
-    return jsonify({'root_1': classroom_id, 'root_2': classroom_id})
+    classroom_stats.loc(classroom_id)
+    return jsonify({'classroom_id': classroom_id})
 
 
 @app.route('/solve', methods=['POST'])
