@@ -5,4 +5,4 @@ data2/
 .DS_Store
 src/.ipynb_checkpoints/
 src/__pycache__/
-../img/sparklines/
+img/sparklines/
