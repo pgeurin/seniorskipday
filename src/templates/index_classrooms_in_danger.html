@@ -31,7 +31,7 @@
     <p>Please enter the classroom id below:</p>
     <div>
         <!-- These have id's so that later we can pull out data using js. -->
-        <span>classroom_id:</span> <input id="classroom_id"></input>
+        <span>classroom:</span> <input id="classroom_stat"></input>
     </div>
     <div>
         <button type="button" id="search">Search</button>
@@ -255,7 +255,7 @@ let get_input_coefficients = function() {
             'c': parseInt(c)}
 };
 
-let send_classroom_id_json = function(coefficients) {
+let send_classroom_id_json = function(classroom_id) {
     $.ajax({
         url: '/search',
         contentType: "application/json; charset=utf-8",
@@ -263,7 +263,7 @@ let send_classroom_id_json = function(coefficients) {
         success: function (data) {
             display_search(data);
         },
-        data: JSON.stringify(coefficients)
+        data: JSON.stringify(classroom_id)
     });
 };
 
@@ -280,7 +280,7 @@ let send_coefficient_json = function(coefficients) {
 };
 
 let display_search = function(result) {
-    $("span#search").html(result.classroom_id)
+    $("span#search").html(result.classroom_stat)
 };
 
 let display_solutions = function(solutions) {
