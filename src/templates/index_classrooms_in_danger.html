@@ -115,7 +115,7 @@ let send_classroom_id_json = function(classroom_id) {
         url: '/search',
         contentType: "application/json; charset=utf-8",
         type: 'POST',
-        success: function (data) {
+        success: function(data) {
             display_search(data);
         },
         data: JSON.stringify(classroom_id)
@@ -135,19 +135,25 @@ let send_coefficient_json = function(coefficients) {
 };
 
 let display_search = function(result) {
+    console.log(result)
+    console.log(result.classroom_stat)
+    console.log(result['classroom_stat'])
+    console.log(result['stat_labels'])
+    console.log(result.values)
+    console.log(result.keys)
     $("span#searched_class").html(makeUL(result.classroom_stat))
     // $("span#searched_class_columns").html(result.stat_labels)
-    $("span#searched_class_columns").html(make_table(result.classroom_stat, ['a','b'])) // result.stat_labels))
+    $("span#searched_class_columns").html( make_table(result.classroom_stat, result.stat_labels) ) // ['a','b'])) // result.stat_labels))
 };
 
-function make_table(array, columns) {
+function make_table(array, table_headers) {
     var table = document.createElement('table');
     var thead = document.createElement('thead');
     var tr = document.createElement('tr');
     thead.appendChild(tr);
-    for(var i = 0; i < columns.length; i++) {
+    for(var i = 0; i < table_headers.length; i++) {
         var item = document.createElement('th');
-        item.appendChild(document.createTextNode(columns[i]));
+        item.appendChild(document.createTextNode(table_headers[i]));
         tr.appendChild(item);
     }
     var tbody = document.createElement(tbody);

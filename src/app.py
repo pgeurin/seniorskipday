@@ -32,7 +32,7 @@ def get_search():
     print(classroom_stat)
     print(stat_labels)
     # return jsonify({'classroom_stat': classroom_id})
-    return jsonify({'classroom_stat': classroom_stat, 'stat_lables': stat_labels})
+    return jsonify({'classroom_stat': classroom_stat, 'stat_labels': stat_labels})
 
 
 @app.route('/solve', methods=['POST'])
