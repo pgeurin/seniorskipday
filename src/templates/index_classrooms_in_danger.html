@@ -27,40 +27,50 @@
         <p>Use this application to determine which classes need intervention: weather it be email, offers, or otherwise.</p>
       </div>
     </div>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <div class="container">
+      <h1>Bootstrap 3 DataTables</h1>
+      <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            {% for title in columns %}
+            <th>{{title}}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in data %}  <!--start for loop over variable data-->
+          <tr>
+            {% for col_item in row %}
+            <td>{{col_item}}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
     <h1>Search classrooms</h1>
     <p>Please enter the classroom id below:</p>
     <div>
-    <span>classroom:</span> <input id="classroom_id"></input>
+      <span>classroom:</span> <input id="classroom_id"></input>
     </div>
     <div>
         <button type="button" id="search">Search</button>
     </div>
-    <p> The solution is: <span id="searched_class_columns"></span> </p>
-    <p> The solution is: <span id="searched_class"></span> </p>
-
-    <h1>The DSI Quadratic Equation Solver</h1>
-    <p>This app will solve quadratic equations for you!</p>
-    <p>Please enter the coefficients below!</p>
-    <div>
-        <!-- These have id's so that later we can pull out data using js. -->
-        <span>a:</span> <input id="a"></input>
-        <span>b:</span> <input id="b"></input>
-        <span>c:</span> <input id="c"></input>
-    </div>
-    <div>
-        <button type="button" id="solve">Solve!</button>
-    </div>
-    <div>
-        <!-- The span has an id so that later we can fill in the solution
-             using js. -->
-    <p> The solution is: <span id="solution"></span> </p>
+    <span id="searched_class_columns"></span>
 
 <div class="container">
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <h1 class="page-header">Disengagement Index</h1>
       <!-- <h2 class="sub-header">Clients disengaging</h2> -->
       <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table table-striped blueTable">
           <thead>
             <tr>
               {% for title in columns %}
@@ -85,10 +95,10 @@
   </div>
 </div>
 
-<script
+<!-- <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> -->
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
 <!-- <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}">  </script> -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
@@ -185,7 +195,10 @@ let display_solutions = function(solutions) {
     $("span#solution").html(solutions.root_1 + " and " + solutions.root_2)
 };
 
+
 $(document).ready(function() {
+
+  $('#example').DataTable();
   $("button#search").click(function() {
       let classroom_id = get_classroom_id();
       send_classroom_id_json(classroom_id);
@@ -194,7 +207,6 @@ $(document).ready(function() {
       let coefficients = get_input_coefficients();
       send_coefficient_json(coefficients);
   })
-
 })
 </script>
 </body>
