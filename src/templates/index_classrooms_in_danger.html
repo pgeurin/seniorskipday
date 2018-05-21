@@ -31,12 +31,12 @@
     <p>Please enter the classroom id below:</p>
     <div>
         <!-- These have id's so that later we can pull out data using js. -->
-        <span>classroom:</span> <input id="classroom_stat"></input>
+        <span>classroom:</span> <input id="classroom_id"></input>
     </div>
     <div>
         <button type="button" id="search">Search</button>
     </div>
-    <p> The solution is: <span id="search"></span> </p>
+    <p> The solution is: <span id="class"></span> </p>
 
     <h1>The DSI Quadratic Equation Solver</h1>
     <p>This app will solve quadratic equations for you!</p>
@@ -280,8 +280,29 @@ let send_coefficient_json = function(coefficients) {
 };
 
 let display_search = function(result) {
-    $("span#search").html(result.classroom_stat)
+    $("span#class").html(makeUL(result.classroom_stat))
+    $("span#class").html(makeUL(result.stat_labels))
 };
+
+function makeUL(array) {
+    // Create the list element:
+    var list = document.createElement('ul');
+
+    for(var i = 0; i < array.length; i++) {
+        // Create the list item:
+        var item = document.createElement('li');
+
+        // Set its contents:
+        item.appendChild(document.createTextNode(array[i]));
+
+        // Add it to the list:
+        list.appendChild(item);
+    }
+
+    // Finally, return the constructed list:
+    return list;
+}
+
 
 let display_solutions = function(solutions) {
     $("span#solution").html(solutions.root_1 + " and " + solutions.root_2)
