@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+  .zoom {
+      transition: transform .2s; /* Animation */
+      width: 200px;
+      height: 40px;
+      margin: 0 auto;
+  }
+
+  .zoom:hover {
+      transform: scale(4); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+  </style>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,7 +56,9 @@
         <tbody>
           {% for row in data %}  <!--start for loop over variable data-->
           <tr>
-            <td><img class="img" src='https://s3-us-west-2.amazonaws.com/sparklines/sparklines/sparkline_{{1000}}_thumb.png' alt="" style="width:200px; height:auto;"></td>
+            <td>
+            <img class="zoom" src="https://s3-us-west-2.amazonaws.com/sparklines/sparklines/sparkline_{{1}}.png">
+            </td>
             {% for col_item in row %}
             <td>{{col_item}}</td>
             {% endfor %}
