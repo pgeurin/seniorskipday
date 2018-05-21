@@ -30,6 +30,7 @@ def get_search():
     classroom_stat = classroom_stats.loc[classroom_id].tolist()
     stat_labels = list(classroom_stats.columns)
     print(classroom_stat)
+    print(stat_labels)
     # return jsonify({'classroom_stat': classroom_id})
     return jsonify({'classroom_stat': classroom_stat, 'stat_lables': stat_labels})
 
