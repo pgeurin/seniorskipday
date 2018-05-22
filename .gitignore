@@ -5,6 +5,9 @@ data2/
 .DS_Store
 src/.ipynb_checkpoints/
 src/__pycache__/
+img/tc_screencasts1.png
+img/tc_screencasts2.png
+img/tc_screencasts3.png
 img/tc_screencasts4.png
 img/tc_screencasts5.png
 img/tc_screencasts6.png
