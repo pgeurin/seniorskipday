@@ -6,10 +6,7 @@ Data-wise these two conditions look similar. In the vacation case the teachers w
 
 Solution: make an early warning notification system and dashboard.
 
-
-
-### Clear research question:
-What are the inferential relationships between user interaction and eventual cutoff. Can we warn them to get them back on track?
+http://www.teachersindanger.com/
 
 ###
 ![ScreenCast](img/tc_screencast3.gif)
