@@ -1,6 +1,12 @@
 # Notification for User churn in Transparent Classroom
 
-Clear research question:
+Churn with a twist: Transparent Classroom makes student tracking software for teachers, and they have a problem. Sometimes teachers take vacation, and sometimes they decide to drop the software. The only catch is, they don’t change their account. The school does. So the account doesn’t churn, but it’s still at risk.
+Data-wise these two conditions look similar. In the vacation case the teachers will come back and it would be very annoying for them to get an email or text asking why they left the service. In the drop case you want to intervene as soon as possible. Tricky. 
+Solution: make an early warning notification system and dashboard.
+
+
+
+### Clear research question:
 What are the inferential relationships between user interaction and eventual cutoff. Can we warn them to get them back on track?
 
 ###
