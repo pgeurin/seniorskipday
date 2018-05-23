@@ -4,7 +4,7 @@ Clear research question:
 What are the inferential relationships between user interaction and eventual cutoff. Can we warn them to get them back on track?
 
 ###
-![ScreenCast](img/tc_screencast3.gif)
+![ScreenCast](img/tc_screencast9.gif)
 
 ### Data source:
 
