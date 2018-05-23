@@ -6,7 +6,7 @@ Data-wise these two conditions look similar. In the vacation case the teachers w
 
 Solution: make an early warning notification system and dashboard.
 
-http://www.teachersindanger.com/
+http://www.teachersindanger.com/ - (data hidden for Client)
 
 ###
 ![ScreenCast](img/tc_screencast9.gif)
