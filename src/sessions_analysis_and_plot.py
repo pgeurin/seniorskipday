@@ -22,7 +22,7 @@ def make_sum_sessions(sessions):
     sum_sessions = sum_sessions_date_indexed.reset_index()
     return sum_sessions
 
-def plot_one_session(sum_sessions, school_id=24):
+def plot_one_session(sessions, sum_sessions, school_id=24):
     fig, ax = plt.subplots(1, 1, figsize=(20,3))
     ax.plot(sum_sessions[sum_sessions['school_id']==school_id]['start_date'], sum_sessions[sum_sessions['school_id']==school_id]['exists'])
     plt.show()
@@ -41,14 +41,18 @@ def plot_session_starts(sessions):
 
 
 def sessions_to_plots(sessions):
-    make_session_plot(sessions)
+    # make_session_plot(sessions)
     sum_sessions = make_sum_sessions(sessions)
-    plot_one_session(sum_sessions, school_id=24)
+    plot_one_session(sessions, sum_sessions, school_id=24)
     plot_session_starts(sessions)
     return sum_sessions
 
 
 def main():
+    sessions = pd.read_csv('../data_january/sessions.csv')
+    sessions['start_date'] = pd.to_datetime(sessions['start_date'])
+    sessions['stop_date'] = pd.to_datetime(sessions['stop_date'])
+    sessions['exists'] = 1
     sessions_to_plots(sessions)
     # make_session_plot(sessions)
     # sum_sessions = make_sum_sessions(sessions)
