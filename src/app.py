@@ -2,14 +2,14 @@ from flask import Flask, render_template, request, jsonify
 import pandas as pd
 
 app = Flask(__name__)
-classroom_stats = pd.read_csv('../data/classroom_stats.csv')
+classroom_stats = pd.read_csv('../data_january/classroom_stats.csv')
 classroom_stats['Probabilty Zero Posts for next 6 months'] = classroom_stats[
     'Probabilty Zero Posts for next 6 months'].apply(
-        lambda x: str(round(x, 2)))
+        lambda x: round(x, 2))
 classroom_stats = classroom_stats.rename(columns={
     'Probabilty Zero Posts for next 6 months': 'Prob 0 posts 6 months',
     'post_per_lesson_aka_popularity_mean': 'Lesson Popularity',
-    "classroom_id": "Classroom ID",
+    'classroom_id': "Classroom ID",
     'school_id_unique': 'School ID'})
 classroom_stats = classroom_stats.drop('school_id_mean', axis=1)
 

@@ -108,16 +108,6 @@ let get_classroom_id = function() {
 };
 
 
-let get_input_coefficients = function() {
-    let a = $("input#a").val()
-    let b = $("input#b").val()
-    let c = $("input#c").val()
-    return {'a': parseInt(a),
-            'b': parseInt(b),
-            'c': parseInt(c)}
-};
-
-
 let send_classroom_id_json = function(classroom_id) {
     $.ajax({
         url: '/search',
@@ -191,11 +181,6 @@ function makeUL(array) {
     }
     return list;
 }
-
-
-let display_solutions = function(solutions) {
-    $("span#solution").html(solutions.root_1 + " and " + solutions.root_2)
-};
 
 
 $(document).ready(function() {
