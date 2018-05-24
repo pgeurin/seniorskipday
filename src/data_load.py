@@ -79,6 +79,10 @@ def load_all():
             classrooms_merged)
 
 
+def load_now():
+    now = pd.to_datetime('January 24, 2018')
+    return now
+
 def main():
     (teachers, students, classrooms, sessions, schools, posts, planning_events,
     child_posts, lesson_posts, parents, classrooms_merged) = import_all()
