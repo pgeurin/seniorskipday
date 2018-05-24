@@ -80,16 +80,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <h1>Search all classrooms</h1>
-    <p>Please enter the classroom id below:</p>
-    <div>
-      <span>classroom:</span> <input id="classroom_id"></input>
+    <div class="container">
+      <h1>Search all classrooms</h1>
+      <p>Please enter the classroom id below:</p>
+      <div>
+        <span>classroom:</span> <input id="classroom_id"></input>
+      </div>
+      <div>
+          <button type="button" id="search">Search</button>
+      </div>
+      <span id="searched_class_columns"></span>
     </div>
-    <div>
-        <button type="button" id="search">Search</button>
-    </div>
-    <span id="searched_class_columns"></span>
-
 <!-- <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -106,6 +107,7 @@ let get_classroom_id = function() {
     return {'classroom_id': parseInt(classroom_id),}
 };
 
+
 let get_input_coefficients = function() {
     let a = $("input#a").val()
     let b = $("input#b").val()
@@ -114,6 +116,7 @@ let get_input_coefficients = function() {
             'b': parseInt(b),
             'c': parseInt(c)}
 };
+
 
 let send_classroom_id_json = function(classroom_id) {
     $.ajax({
@@ -127,6 +130,7 @@ let send_classroom_id_json = function(classroom_id) {
     });
 };
 
+
 let send_coefficient_json = function(coefficients) {
     $.ajax({
         url: '/solve',
@@ -139,6 +143,7 @@ let send_coefficient_json = function(coefficients) {
     });
 };
 
+
 let display_search = function(result) {
     console.log(result)
     console.log(result.classroom_stat)
@@ -150,6 +155,7 @@ let display_search = function(result) {
     // $("span#searched_class_columns").html(result.stat_labels)
     $("span#searched_class_columns").html( make_table(result.classroom_stat, result.stat_labels) ) // ['a','b'])) // result.stat_labels))
 };
+
 
 function make_table(array, table_headers) {
     var table = document.createElement('table');
@@ -174,6 +180,7 @@ function make_table(array, table_headers) {
     return table;
 }
 
+
 function makeUL(array) {
     // Create the list element:
     var list = document.createElement('ul');
@@ -192,41 +199,13 @@ let display_solutions = function(solutions) {
 
 
 $(document).ready(function() {
-
   $('#example').DataTable();
   $("button#search").click(function() {
       let classroom_id = get_classroom_id();
       send_classroom_id_json(classroom_id);
   })
-  $("button#solve").click(function() {
-      let coefficients = get_input_coefficients();
-      send_coefficient_json(coefficients);
-  })
 })
 </script>
 </body>
-
-
-      <footer>
-        <p>&copy; Meetglow 2018</p>
-      </footer>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
-
-    <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
- -->  </body>
+</body>
 </html>
-
-
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-    <title>TClassrooms in Danger</title>
-</head>
-<body>
-</html> -->

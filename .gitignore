@@ -2,6 +2,8 @@ Archive2.zip
 Archive.zip
 data/
 data2/
+data_june/
+data_january/
 .DS_Store
 src/.ipynb_checkpoints/
 src/__pycache__/
@@ -11,8 +13,6 @@ img/tc_screencasts4.png
 img/tc_screencasts5.png
 img/tc_screencasts6.png
 img/sparklines/
-data_june/
-data_january/
 img/jupyter\ 2.svg
 img/jupyter 2.svg
 img/jupyter.png
