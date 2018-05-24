@@ -12,7 +12,6 @@ classroom_stats = classroom_stats.rename(columns={
     'classroom_id': "Classroom ID",
     'school_id_unique': 'School ID'})
 classroom_stats = classroom_stats.drop('school_id_mean', axis=1)
-
 lists_classroom_stats = [
     list(classroom_stats[i].values) for i in classroom_stats]
 
