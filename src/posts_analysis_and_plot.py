@@ -47,6 +47,10 @@ def posts_to_plots(posts):
     return sum_post
 
 def main():
+    posts = pd.read_csv('../data_january/posts.csv')
+    posts['exists']=1
+    posts=posts.rename(columns={'id':'post_id'})
+    posts['date'] = pd.to_datetime(posts.date, errors='coerce')
     posts_to_plots(posts)
     # make_sparkline(sum_post, classroom_id=77)
     # make_sparkline(sum_post, classroom_id=852)

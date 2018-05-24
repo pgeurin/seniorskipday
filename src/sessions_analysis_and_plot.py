@@ -41,7 +41,7 @@ def plot_session_starts(sessions):
 
 
 def sessions_to_plots(sessions):
-    # make_session_plot(sessions)
+    make_session_plot(sessions)
     sum_sessions = make_sum_sessions(sessions)
     plot_one_session(sessions, sum_sessions, school_id=24)
     plot_session_starts(sessions)
