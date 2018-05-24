@@ -17,17 +17,14 @@ http://seniorskip.com/ - (Data hidden for client, sorry)
 <!-- ![slide2_meet_transparent_classroom.png](img/slide2_meet_transparent_classroom.png) -->
 <img src="img/slide2_meet_transparent_classroom.png" width="600"/>
 
-Transparent classroom’s database. Actual Data not available to the public, sorry
+Transparent classroom’s database. Actual Data not available to the public, sorry. It's a series of tables, detailing posts, teachers, classrooms, lessons, and their relationship.
 
-<!-- ![slide_3_data_layout](img/slide_3_data_layout.png) -->
 <img src="img/slide_3_data_layout.png" width="400"/>
-<!-- ![Example Teacher 2 Posts](img/class_852_posts.png) -->
-<img src="img/class_852_posts.png" width="400"/>
 
-<!-- ![Example Teacher 3 Log(Posts)](img/class_47_log_posts.png) -->
-<img src="img/class_47_log_posts.png" width="400"/>
+### Features:
 
-Features:
+I extracted features from the table relationships:
+
 <!-- ![slide3_data.png](img/slide3_data.png) -->
 <img src="img/slide3_data.png" width="400"/>
 
@@ -44,24 +41,16 @@ I haven’t learned time series methods yet. I’m hoping to learn something qui
 
 ### How evaluate?
 
-There are only 30 users who’ve left the company. So churn isn’t the correct measurement in this case. Schools discontinue their accounts (one year long). But teachers don’t have a direct say. Teacher decreased use is theorized to be related to decrease of use. Instead we’ll be using the their pre-set metric “health score” which is a amalgamation of five metrics (given in code)
+There are only 30 users who’ve left the company. So churn isn’t the correct measurement in this case. Schools discontinue their accounts at the one year mark. Teachers don’t have a direct say. Teacher decreased use is theorized to be related to decrease of use. Instead we’ll be using the their pre-set metric “health score” which is a amalgamation of five metrics (given in code)
 We’ll see how many stopped meeting this score.
 
-<!-- ![Histograms Post Since Certain Days](img/days_with_one_post_since_feb_15_2018.png) -->
 <img src="img/days_with_one_post_since_feb_15_2018.png"  width="400"/>
-<!-- ![Histograms Post Since Certain Days](img/log_days_with_one_post_since_feb_15_2018.png) -->
 <img src="img/log_days_with_one_post_since_feb_15_2018.png"  width="400"/>
-<!-- ![Histograms Post Since Certain Days](img/days_with_one_post_since_feb_15_2011.png) -->
 <img src="img/days_with_one_post_since_feb_15_2011.png"  width="400"/>
-<!-- ![Histograms Post Since Certain Days](img/log_days_with_one_post_since_feb_15_2011.png) -->
 <img src="img/log_days_with_one_post_since_feb_15_2011.png"  width="400"/>
-<!-- ![Histograms Post Since Certain Days](img/hist_post_since_jan_15_2018.png) -->
 <img src="img/hist_post_since_jan_15_2018.png"  width="400"/>
-<!-- ![Histograms Post Since Certain Days](img/hist_log_post_since_jan_15_2018.png) -->
 <img src="img/hist_log_post_since_jan_15_2018.png"  width="400"/>
-<!-- ![Histograms Post Since Certain Days](img/hist_post_since_feb_15_2011.png) -->
 <img src="img/hist_post_since_feb_15_2011.png"  width="400"/>
-<!-- ![Histograms Post Since Certain Days](img/hist_log_post_since_feb_15_2011.png) -->
 <img src="img/hist_log_post_since_feb_15_2011.png" width="400"/>
 
 ### What is the MVP?
