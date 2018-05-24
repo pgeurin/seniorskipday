@@ -11,7 +11,11 @@ def main():
      child_posts, lesson_posts, parents, classrooms_merged) = load_all()
     # sessions_to_plots(sessions)
     # posts_to_plots(posts)
+<<<<<<< HEAD
     # classrooms_merged_all_leaky = make_classrooms_merged(classrooms, posts,
+=======
+    classrooms_merged_all_leaky = make_classrooms_merged(classrooms, posts,
+>>>>>>> 9d8a99265da6530b8b9ccf8a5d6d8f60135f971f
                                                          teachers, students,
                                                          lesson_posts)
     now = load_now()
