@@ -9,8 +9,8 @@ Solution: make an early warning notification system and dashboard.
 
 http://seniorskip.com/ - (Data hidden for client, sorry)
 
-![ScreenCast](img/tc_screencast9.gif)
-<img src="img/tc_screencast9.gif" width="600"/>
+<!-- ![ScreenCast](img/tc_screencast9.gif) -->
+<img src="img/tc_screencast9.gif" width="400"/>
 
 ### Data Source:
 
@@ -20,15 +20,16 @@ http://seniorskip.com/ - (Data hidden for client, sorry)
 Transparent classroom’s database. Actual Data not available to the public, sorry
 
 <!-- ![slide_3_data_layout](img/slide_3_data_layout.png) -->
-<img src="img/slide_3_data_layout.png" width="600"/>
+<img src="img/slide_3_data_layout.png" width="400"/>
 <!-- ![Example Teacher 2 Posts](img/class_852_posts.png) -->
-<img src="img/class_852_posts.png" width="600"/>
+<img src="img/class_852_posts.png" width="400"/>
 
-![Example Teacher 3 Log(Posts)](img/class_47_log_posts.png)
+<!-- ![Example Teacher 3 Log(Posts)](img/class_47_log_posts.png) -->
+<img src="img/class_47_log_posts.png" width="400"/>
 
 Features:
-![slide3_data.png](img/slide3_data.png)
-<img src="img/slide3_data.png" width="600"/>
+<!-- ![slide3_data.png](img/slide3_data.png) -->
+<img src="img/slide3_data.png" width="400"/>
 
 
 ### Analytics base table conversion:
@@ -61,7 +62,7 @@ We’ll see how many stopped meeting this score.
 <!-- ![Histograms Post Since Certain Days](img/hist_post_since_feb_15_2011.png) -->
 <img src="img/hist_post_since_feb_15_2011.png"  width="400"/>
 <!-- ![Histograms Post Since Certain Days](img/hist_log_post_since_feb_15_2011.png) -->
-<img src="img/hist_log_post_since_feb_15_2011.png" width="600"/>
+<img src="img/hist_log_post_since_feb_15_2011.png" width="400"/>
 
 ### What is the MVP?
 
@@ -72,6 +73,6 @@ Yes, this is a risk as we don’t have time to make a test just yet. The client 
 
 An assistive goal would be to compare the use dropoff with the 30 churns results to decide which method is best
 
-## Reach out to me:
+## Questions? Reach out:
 
 ![slide5_philipgeurin.png](img/slide5_philipgeurin.png)
