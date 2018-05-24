@@ -3,26 +3,27 @@
 
 Churn with a twist: Transparent Classroom makes student tracking software for teachers, and they have a problem. Sometimes teachers take vacation, and sometimes they decide to drop the software. The only catch is, they don’t change their account. The school does. So the account doesn’t churn, but it’s still at risk.
 
-Data-wise these two conditions look similar. In the vacation case the teachers will come back and it would be very annoying for them to get an email or text asking why they left the service. In the drop case you want to intervene as soon as possible. Tricky. 
+Data-wise these two conditions look similar. In the vacation case the teachers will come back and it would be very annoying for them to get an email or text asking why they left the service. In the drop case you want to intervene as soon as possible. Tricky.
 
 Solution: make an early warning notification system and dashboard.
 
-http://www.teachersindanger.com/ - (Data hidden for client, sorry)
+http://seniorskip.com/ - (Data hidden for client, sorry)
 
 ![ScreenCast](img/tc_screencast9.gif)
 
 
 ### Data Source:
 
-![slide2_meet_transparent_classroom.png](img/slide2_meet_transparent_classroom.png)
-![slide5_philipgeurin.png](img/slide5_philipgeurin.png)
+<!-- ![slide2_meet_transparent_classroom.png](img/slide2_meet_transparent_classroom.png) -->
+<img src="img/slide2_meet_transparent_classroom.png" alt="drawing" style="width: 600px;"/>
 
 Transparent classroom’s database. Actual Data not available to the public, sorry
 
-![slide_3_data_layout](img/slide_3_data_layout.png)
+<!-- ![slide_3_data_layout](img/slide_3_data_layout.png) -->
+<img src="img/slide_3_data_layout.png" alt="drawing" style="width: 600px;"/>
+<!-- ![Example Teacher 2 Posts](img/class_852_posts.png) -->
+<img src="img/class_852_posts.png" alt="drawing" style="width: 600px;"/>
 
-![Example Teacher Posts](img/Class_77_log_posts.png)
-![Example Teacher 2 Posts](img/class_852_posts.png)
 ![Example Teacher 3 Log(Posts)](img/class_47_log_posts.png)
 
 Features:
@@ -64,3 +65,7 @@ An assistive goal would be to compare the use dropoff with the 30 churns results
 These are the subscription renewals:
 
 ![Session Line Plot](img/session_line_plot.png)
+
+## Reach out to me:
+
+![slide5_philipgeurin.png](img/slide5_philipgeurin.png)
