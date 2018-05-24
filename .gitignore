@@ -2,6 +2,8 @@ Archive2.zip
 Archive.zip
 data/
 data2/
+data_june/
+data_january/
 .DS_Store
 src/.ipynb_checkpoints/
 src/__pycache__/
@@ -10,11 +12,19 @@ data_january/
 data_june/
 img/Mossy.jpeg
 img/Mossy_only_closer.jpeg
-img/jupyter 2.svg
-img/jupyter.png
-img/jupyter.svg
 img/matt-damon-best-movies-tv-shows.jpg
 img/matt-damon.jpg
 img/numpy.png
 img/numpy.svg
 img/python.png
+img/tc_screencasts1.png
+img/tc_screencasts2.png
+img/tc_screencasts4.png
+img/tc_screencasts5.png
+img/tc_screencasts6.png
+img/jupyter\ 2.svg
+img/jupyter 2.svg
+img/jupyter.png
+img/jupyter.svg
+img/Webpage.png
+tc_chalice/
