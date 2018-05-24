@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from data_load import (load_posts, load_classrooms, load_teachers,
-                       load_students, load_lesson_posts)
+                       load_students, load_lesson_posts, load_now)
 
 def make_posts_per_lesson(lesson_posts):
     posts_per_lesson = lesson_posts.groupby('lesson_id').count()
@@ -96,7 +96,7 @@ def make_classrooms_merged(classrooms, posts, teachers, students, lesson_posts):
     return classrooms_merged_all
 
 def make_classrooms_merged_non_leaky(now, posts, child_posts, lesson_posts):
-    posts_before = posts[posts['date']<now]
+    posts_before = posts[posts['date'] < now]
     classrooms_merged = classrooms.merge(posts,
                                          how='outer',
                                          left_on='classroom_id',
@@ -127,7 +127,6 @@ def make_classrooms_merged_non_leaky(now, posts, child_posts, lesson_posts):
                                                 left_on='lesson_set_id',
                                                 right_index=True)
     return classrooms_merged
-make_classrooms_merged_non_leaky = make_classrooms_merged_non_leaky(now, posts, child_posts)
 
 def main():
     # posts_per_lesson = make_posts_per_lesson(lesson_posts)
@@ -139,7 +138,9 @@ def main():
     teachers = load_teachers()
     students = load_students()
     lesson_posts = load_lesson_posts()
+    now = load_now()
     classrooms_merged_all_leaky = make_classrooms_merged(classrooms, posts, teachers, students, lesson_posts)
+    make_classrooms_merged_non_leaky = make_classrooms_merged_non_leaky(now, posts, child_posts)
 
 if __name__ == "__main__":
     main()
