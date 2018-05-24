@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def posts_between(posts, date1, date2):
-    print('total posts in this timeframe = ' + str(sum((date1 < posts['date']) & (posts['date'] < date2))))
+    # print('total posts in this timeframe = ' + str(sum((date1 < posts['date']) & (posts['date'] < date2))))
     last_month_posts = posts[(date1 < posts['date']) & (posts['date'] < date2)].groupby('classroom_id').count()
     num_posts_by_class = posts.groupby('classroom_id').sum()
     last_month_posts_total= num_posts_by_class.join(last_month_posts, how='left', lsuffix='_num_posts_by_class', rsuffix='_last_month_posts')

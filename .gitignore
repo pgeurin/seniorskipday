@@ -7,21 +7,25 @@ data_january/
 .DS_Store
 src/.ipynb_checkpoints/
 src/__pycache__/
+img/sparklines/
+data_january/
+data_june/
+img/Mossy.jpeg
+img/Mossy_only_closer.jpeg
+img/matt-damon-best-movies-tv-shows.jpg
+img/matt-damon.jpg
+img/numpy.png
+img/numpy.svg
+img/python.png
 img/tc_screencasts1.png
 img/tc_screencasts2.png
 img/tc_screencasts4.png
 img/tc_screencasts5.png
 img/tc_screencasts6.png
-img/sparklines/
+img/tc_screencast9_fast.mp4
 img/jupyter\ 2.svg
 img/jupyter 2.svg
 img/jupyter.png
 img/jupyter.svg
-img/numpy.png
-img/numpy.svg
-img/matt-damon-best-movies-tv-shows.jpg
-matt-damon.jpg
 img/Webpage.png
-img/Mossy.jpeg
-img/Mossy_only_closer.jpeg
 tc_chalice/
