@@ -1,20 +1,20 @@
 from flask import Flask, render_template, request, jsonify
-# import psycopg2
-from math import sqrt
-# from load_data import process_data
-# from build_rf import FraudDetector
-import pickle
 import pandas as pd
-from random import random
-import matplotlib.pyplot as plt
-from io import BytesIO
 
 app = Flask(__name__)
-
 classroom_stats = pd.read_csv('../data/classroom_stats.csv')
-lists_classroom_stats = [list(classroom_stats[i].values) for i in classroom_stats]
-# load the model
-# model = pickle.load(open("../static/fd.pkl", "rb"))
+classroom_stats['Probabilty Zero Posts for next 6 months'] = classroom_stats[
+    'Probabilty Zero Posts for next 6 months'].apply(
+        lambda x: str(round(x, 2)))
+classroom_stats = classroom_stats.rename(columns={
+    'Probabilty Zero Posts for next 6 months': 'Prob 0 posts 6 months',
+    'post_per_lesson_aka_popularity_mean': 'Lesson Popularity',
+    "classroom_id": "Classroom ID",
+    'school_id_unique': 'School ID'})
+classroom_stats = classroom_stats.drop('school_id_mean', axis=1)
+
+lists_classroom_stats = [
+    list(classroom_stats[i].values) for i in classroom_stats]
 
 
 @app.route('/', methods=['GET'])
@@ -26,28 +26,10 @@ def index():
 def get_search():
     user_data = request.json
     classroom_id = user_data['classroom_id']
-    print(classroom_id)
     classroom_stat = classroom_stats.loc[classroom_id].tolist()
     stat_labels = list(classroom_stats.columns)
-    print(classroom_stat)
-    print(stat_labels)
-    # return jsonify({'classroom_stat': classroom_id})
-    return jsonify({'classroom_stat': classroom_stat, 'stat_labels': stat_labels})
-
-
-@app.route('/solve', methods=['POST'])
-def solve():
-    user_data = request.json
-    a, b, c = user_data['a'], user_data['b'], user_data['c']
-    root_1, root_2 = _solve_quadratic(a, b, c)
-    return jsonify({'root_1': root_1, 'root_2': root_2})
-
-
-def _solve_quadratic(a, b, c):
-    disc = b*b - 4*a*c
-    root_1 = (-b + sqrt(disc))/(2*a)
-    root_2 = (-b - sqrt(disc))/(2*a)
-    return root_1, root_2
+    return jsonify({'classroom_stat': classroom_stat,
+                    'stat_labels': stat_labels})
 
 
 def main():
