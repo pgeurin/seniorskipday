@@ -1,4 +1,5 @@
-# Notification for User churn in Transparent Classroom
+# Senior Skip Day
+## Notification for User churn in Transparent Classroom
 
 Churn with a twist: Transparent Classroom makes student tracking software for teachers, and they have a problem. Sometimes teachers take vacation, and sometimes they decide to drop the software. The only catch is, they don’t change their account. The school does. So the account doesn’t churn, but it’s still at risk.
 
@@ -6,18 +7,26 @@ Data-wise these two conditions look similar. In the vacation case the teachers w
 
 Solution: make an early warning notification system and dashboard.
 
-http://www.teachersindanger.com/ - (data hidden for client)
+http://www.teachersindanger.com/ - (Data hidden for client, sorry)
 
-###
 ![ScreenCast](img/tc_screencast9.gif)
 
-### Data source:
 
-Transparent classroom’s last one year database.
+### Data Source:
+
+![slide2_meet_transparent_classroom.png](img/slide2_meet_transparent_classroom.png)
+![slide5_philipgeurin.png](img/slide5_philipgeurin.png)
+
+Transparent classroom’s database. Actual Data not available to the public, sorry
+
+![slide_3_data_layout](img/slide_3_data_layout.png)
 
 ![Example Teacher Posts](img/Class_77_log_posts.png)
 ![Example Teacher 2 Posts](img/class_852_posts.png)
 ![Example Teacher 3 Log(Posts)](img/class_47_log_posts.png)
+
+Features:
+![slide3_data.png](img/slide3_data.png)
 
 ### Analytics base table conversion:
 
