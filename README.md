@@ -5,11 +5,14 @@
 1. [About](#about)
 2. [Procedure](#procedure)
 3. [Tech Stack](#tech-stack)
-4. [Web Application](#web-application)
 5. [Data Source](#data-source)
 6. [Features](#features)
-7. [How Evaluate?](#how-evaluate?)
-8. [Contact](questions-reach-out)
+7. [Target Variable Selection](#target-variable-selection)
+8. [Model Selection](Model Selection)
+9. [Evaluation](Evaluation)
+10. [Web Application](#web-application)
+11. [Contact](questions-reach-out)
+
 ## About
 ***NLP and knowledge graphs for AEC using spaCy***
 
@@ -45,14 +48,6 @@ http://seniorskip.com/ - (Data hidden for client, sorry)
  - Javascript
 
 
-## Web Application
-![Screenshot](img/skipday_screenshot.png)
-
-The application returns:
-  * table sortable by any column (including probability of making zero posts in three months)
-  * extracts components and provisions related to the components
-
-
 ## Data Source
 
 <img src="img/slide2_meet_transparent_classroom.png" width="600"/>
@@ -64,10 +59,11 @@ Transparent classroom’s database. Actual Data not available to the public, sor
 ## Features
 
 I extracted these features from the table relationships:
+
 <img src="img/slide3_data.png" width="400"/>
 
 
-## How evaluate?
+## Target Variable Selection
 
 There are only 30 users who’ve left the company. So churn isn’t the correct measurement in this case. Schools discontinue their accounts at the one year mark. Teachers don’t have a direct say. The product owner theorized that non-use is related to discontinuing accounts.
 
@@ -82,6 +78,18 @@ Upon EDA, the data looks continuously distributed. But looking at the log(posts)
 <img src="img/hist_post_since_feb_15_2011.png"  width="300"/>
 <img src="img/hist_log_post_since_feb_15_2011.png" width="300"/>
 
+
+## Model Selection
+
+## Evaluation
+
+
+## Web Application
+![Screenshot](img/skipday_screenshot.png)
+
+The application returns:
+  * table sortable by any column (including probability of making zero posts in three months)
+  * sparklines and information according to each classroom.
 
 ## Questions? Reach out!
 
