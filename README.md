@@ -8,7 +8,7 @@
 4. [Web Application](#web-application)
 5. [Data Source](#Data-Source)
 6. [Features](#Features)
-7. [How Evaluate?](#How-Evaluate)
+7. [How Evaluate?](#How-Evaluate?)
 8. [Contact](Questions?-Reach-out!)
 ## About
 ***NLP and knowledge graphs for AEC using spaCy***
@@ -53,7 +53,7 @@ The application returns:
   * extracts components and provisions related to the components
 
 
-## Data Source:
+## Data Source
 
 <img src="img/slide2_meet_transparent_classroom.png" width="600"/>
 
@@ -61,7 +61,7 @@ Transparent classroom’s database. Actual Data not available to the public, sor
 
 <img src="img/slide_3_data_layout.png" width="400"/>
 
-## Features:
+## Features
 
 I extracted these features from the table relationships:
 <img src="img/slide3_data.png" width="400"/>
