@@ -1,6 +1,6 @@
 # [Senior Skip Day](http://seniorskip.com)
 
-## TOC
+## Table of Contents
 
 1. [About](#about)
 2. [Procedure](#procedure)
