@@ -6,10 +6,10 @@
 2. [Procedure](#procedure)
 3. [Tech Stack](#tech-stack)
 4. [Web Application](#web-application)
-5. [Data Source](#Data-Source)
-6. [Features](#Features)
-7. [How Evaluate?](#How-Evaluate?)
-8. [Contact](Questions?-Reach-out!)
+5. [Data Source](#data-source)
+6. [Features](#features)
+7. [How Evaluate?](#how-evaluate?)
+8. [Contact](questions-reach-out)
 ## About
 ***NLP and knowledge graphs for AEC using spaCy***
 
