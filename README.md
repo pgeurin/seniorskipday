@@ -4,7 +4,7 @@
 
 1. [About](#about)
 2. [Procedure](#procedure)
-3. [Tech Stack](#tech-stack)
+3. [Tools](#tools)
 5. [Data Source](#data-source)
 6. [Features](#features)
 7. [Target Variable Selection](#target-variable-selection)
@@ -14,13 +14,13 @@
 11. [Contact](questions-reach-out)
 
 ## About
-***NLP and knowledge graphs for AEC using spaCy***
-
-Seniorskip.com is a early warning notification system built for the client Transparent Classroom. A dashboard to prioritize the time of customer service representatives.
+**Seniorskip.com is a early warning notification system built for the client Transparent Classroom. A dashboard prioritizing the time of customer service representatives.**
 
 Seniorskip.com is churn with a twist. Transparent Classroom makes student tracking software for teachers, and they have a problem. Sometimes teachers take vacation, and sometimes they decide to drop the software. The only catch is, they don’t change their account. The school does. So the account doesn’t churn, but it’s still at risk.
 
-Data-wise these two conditions look similar. In the vacation case the teachers will come back and it would be very annoying for them to get an email or text asking why they left the service. In the drop case you want to intervene as soon as possible. Tricky.
+Data-wise these two conditions look similar. In the vacation case it would be very annoying for the teachers to get an email or text asking why they left the service. In the drop case you want to intervene as soon as possible.
+
+Tricky.
 
 Solution: make an early warning notification system and dashboard.
 
