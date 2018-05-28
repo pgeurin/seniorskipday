@@ -1,19 +1,43 @@
+import pandas as pd
+import numpy as np
 import pprint, pickle
+from a1_data_load import load_posts, load_now
+from a9_model import make_classrooms_merged_before, declare_now, drop_collumns
+from datetime import timedelta
 
 def unique_num(x):
     return len(np.unique(x))
 
-def main():
-    pkl_file = open('ada_boost_classifier.pkl', 'rb')
-    ada_boost_model = pickle.load(pkl_file)
-    pprint.pprint(ada_boost_model)
-    pkl_file.close()
 
-    y_hat = ada_boost_model.predict_proba(df_X1)
-    df1_y_hat = df_X1
-    df1_y_hat['y_hat'] = y_hat[:,0]
-    #classroom answers in order!!!!!!!!!!!!!!!!
-    danger_classrooms = df1_y_hat.iloc[y_hat[:,0].argsort()[::-1]]
+def main():
+    posts = load_posts()
+    now = declare_now()
+    # pkl_file = open('ada_boost_classifier.pkl', 'rb')
+    # ada_boost_model = pickle.load(pkl_file)
+    # pprint.pprint(ada_boost_model)
+    # pkl_file.close()
+    # y_hat = ada_boost_model.predict_proba(df_X1)
+    # df1_y_hat = df_X1
+    # df1_y_hat['y_hat'] = y_hat[:,0]
+    # # classroom answers in order!!!!!!!!!!!!!!!!
+    # danger_classrooms = df1_y_hat.iloc[y_hat[:,0].argsort()[::-1]]
+
+    classrooms_merged = pd.read_csv('../data_january/classrooms_merged_non_leak.csv')
+    classrooms_merged_before_now = make_classrooms_merged_before(classrooms_merged, now)
+    classrooms_merged_before_now_dropped = drop_collumns(classrooms_merged_before_now)
+
+    pkl_file = open('random_forrest.pkl', 'rb')
+    random_forrest = pickle.load(pkl_file)
+    pprint.pprint(random_forrest)
+    pkl_file.close()
+    df_X2 = pd.read_csv('df_X2.csv')
+    print(df_X2.head(3))
+    df_X2 = df_X2.drop('classroom_id', axis=1)
+    y_hat = random_forrest.predict_proba(df_X2)
+    df2_y_hat = df_X2
+    df2_y_hat['y_hat'] = y_hat[:, 0]
+    danger_classrooms = df2_y_hat.iloc[y_hat[:, 0].argsort()[::-1]]
+
     classroom_stats_before_now = classrooms_merged_before_now_dropped.groupby(
         'classroom_id').agg({
             'school_id': [np.unique],
@@ -44,7 +68,7 @@ def main():
     classroom_stats_with_danger_index['posts_in_last_month'] = last_months_post
     classroom_stats_with_danger_index['danger_index'] = classroom_stats_with_danger_index['posts_in_last_month'] * classroom_stats_with_danger_index['Probabilty Zero Posts for next 6 months']
     # classroom_stats_with_danger_index.to_csv('../data/classroom_stats_w_danger_index.csv')
-
+    classroom_stats_with_danger_index.to_csv('../data_january/classroom_stats_w_danger_index2.csv')
 
 if __name__ == "__main__":
     main()

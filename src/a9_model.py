@@ -103,12 +103,17 @@ def merged_to_sum_before(classrooms_merged, now, y):
     return classrooms_sum_before_dropped
 
 
+def declare_now():
+    now = pd.to_datetime('September 24, 2017')
+    return now
+
+
 def main():
     posts = load_posts()
     classrooms = load_classrooms()
     posts['year_month'] = pd.to_datetime(posts['date']).map(lambda dt: dt.replace(day=1))
     classrooms_merged = pd.read_csv('../data_january/classrooms_merged_non_leak.csv')
-    now = pd.to_datetime('September 24, 2017')
+    now = declare_now()
     six_months = timedelta(days=365//2)
     # one_year = timedelta(days=365)
     last_month_posts_total = get_posts_total_between_with_zeros(posts, now, six_months)
