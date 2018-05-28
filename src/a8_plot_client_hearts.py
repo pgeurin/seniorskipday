@@ -61,8 +61,7 @@ def merge_hearts(classrooms_merged_school, hearts):
 #     hearts_merged = hearts_merged.drop('classroom_id_y', axis=1)
 #     hearts_merged = hearts_merged.drop('classroom_id_x', axis=1)
     return hearts_merged
-hearts_merged = merge_hearts(classrooms_merged, hearts)
-hearts_merged.head()
+
 
 
 def show_heart_merge_deets(hearts_merged, classrooms_merged):
@@ -85,7 +84,11 @@ def main():
     hearts_merged, hearts_merged_cleaned_date = make_hearts_merged(
         hearts,
         classrooms_merged)
+    hearts_merged.head()
     plot_hearts(hearts_merged_cleaned_date, sum_post)
+    hearts_merged = merge_hearts(classrooms_merged, hearts)
+    hearts_merged.head()
+    show_heart_merge_deets(hearts_merged, classrooms_merged)
 
 
 if __name__ == "__main__":

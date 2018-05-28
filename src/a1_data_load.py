@@ -10,8 +10,8 @@ def load_sessions():
 
 def load_posts():
     posts = pd.read_csv('../data_january/posts.csv')
-    posts['exists']=1
-    posts = posts.rename(columns={'id':'post_id'})
+    posts['exists'] = 1
+    posts = posts.rename(columns={'id': 'post_id'})
     posts['date'] = pd.to_datetime(posts.date, errors='coerce')
     return posts
 
@@ -53,7 +53,7 @@ def load_parents():
 
 def load_classrooms():
     classrooms = pd.read_csv('../data_january/classrooms.csv')
-    classrooms = classrooms.rename(columns={'id':'classroom_id'})
+    classrooms = classrooms.rename(columns={'id': 'classroom_id'})
     return classrooms
 
 
@@ -83,10 +83,11 @@ def load_now():
     now = pd.to_datetime('January 24, 2018')
     return now
 
+
 def main():
     (teachers, students, classrooms, sessions, schools, posts, planning_events,
     child_posts, lesson_posts, parents, classrooms_merged) = load_all()
-
+    
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from data_load import (load_posts, load_classrooms, load_teachers,
+from a1_data_load import (load_posts, load_classrooms, load_teachers,
                        load_students, load_lesson_posts, load_now)
 import numpy as np
 
@@ -168,7 +168,7 @@ def load_and_make_dataframe3(classrooms, posts, child_posts, teachers):
 
 def merge_planning_events(posts_merge, planning_events):
     # NOT YET USED
-    posts_merge = posts_merge.merge(planning_events, how='left', left_on)
+    # posts_merge = posts_merge.merge(planning_events, how='left', left_on)
     planning_events.created_at = pd.to_datetime(planning_events.created_at)
     planning_events['created_at'].apply(lambda x: isinstance(x, pd.Timestamp))
     len(planning_events.created_by_id.unique())
