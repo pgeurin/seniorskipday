@@ -131,12 +131,17 @@ def main():
     # classrooms_sum_hearts_before_three_months_ago = make_classrooms_sum_hearts_before_now(classrooms_merged_before_three_months_ago)
     # classrooms_sum_hearts_before_now = make_classrooms_sum_hearts_before_now(classrooms_merged)
     # names3, results3, models3, pipeline3, df_X3 = autoregression.compare_predictions(classrooms_sum_hearts_before_three_months_ago, 'will_post_next_semester')
-    names2, results2, models2, pipeline2, df_X2 = autoregression.compare_predictions(classrooms_sum_before_three_months_ago, 'will_post_next_semester')
+    names2, results2, models2, pipeline2, df_X2 = autoregression.compare_predictions(classrooms_sum_before_three_months_ago, 'will_post_next_semester', corr_matrix=True,
+    scatter_matrix=False, bootstrap_coefs=False,
+    feature_importances=False,
+    partial_dep=False, actual_vs_predicted=False,
+    residuals=False, univariates=False, compare_models=False,
+    ROC=False)
 
     output = open('random_forrest.pkl', 'wb')
     pickle.dump(models2[3], output)
     output.close()
-    pd.to_csv(df_X2, 'df_X2.csv')
+    df_X2.to_csv('df_X2.csv')
 
     # PICKEL:
     # output = open('ada_boost_classifier.pkl', 'wb')
