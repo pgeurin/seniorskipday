@@ -55,6 +55,25 @@ def plot_hearts(hearts_merged, sum_post):
         plt.show()
 
 
+def merge_hearts(classrooms_merged_school, hearts):
+    hearts_merged = classrooms_merged.merge(hearts, how='inner', left_on=['classroom_id','date'], right_on=['classroom_id','date'])
+#     hearts_merged['classroom_id'] = hearts_merged['classroom_id_x']
+#     hearts_merged = hearts_merged.drop('classroom_id_y', axis=1)
+#     hearts_merged = hearts_merged.drop('classroom_id_x', axis=1)
+    return hearts_merged
+hearts_merged = merge_hearts(classrooms_merged, hearts)
+hearts_merged.head()
+
+
+def show_heart_merge_deets(hearts_merged, classrooms_merged):
+    print(len(hearts_merged))
+    print(len(hearts))
+    print(len(classrooms_merged))
+    print(hearts_merged.columns)
+    return None
+show_heart_merge_deets(hearts_merged, classrooms_merged)
+
+
 def main():
     posts = pd.read_csv('../data_january/posts.csv')
     posts['exists'] = 1

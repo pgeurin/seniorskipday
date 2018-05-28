@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from data_load import (load_posts, load_classrooms, load_teachers,
                        load_students, load_lesson_posts, load_now)
+import numpy as np
 
 def make_posts_per_lesson(lesson_posts):
     posts_per_lesson = lesson_posts.groupby('lesson_id').count()
@@ -95,7 +96,7 @@ def make_classrooms_merged(classrooms, posts, teachers, students, lesson_posts):
         current_students_per_class, old_students_per_class)
     return classrooms_merged_all
 
-def make_classrooms_merged_non_leaky(now, posts, child_posts, lesson_posts):
+def make_classrooms_merged_non_leaky(now, posts, child_posts, lesson_posts, classrooms):
     posts_before = posts[posts['date'] < now]
     classrooms_merged = classrooms.merge(posts,
                                          how='outer',
@@ -128,6 +129,50 @@ def make_classrooms_merged_non_leaky(now, posts, child_posts, lesson_posts):
                                                 right_index=True)
     return classrooms_merged
 
+
+def load_and_make_dataframe3(classrooms, posts, child_posts, teachers):
+    classrooms_merged = classrooms.merge(posts,how='outer', left_on='classroom_id', right_on='classroom_id')
+    children_per_post = child_posts.groupby('post_id').count()
+    children_per_post.describe()
+    children_per_post = children_per_post.reset_index()
+    children_per_post['children_per_post_aka_post_blast'] = children_per_post['child_id']
+    children_per_post = children_per_post.drop('child_id', axis=1)
+    classrooms_merged = classrooms_merged.merge(children_per_post, how='left', left_on='post_id', right_on='post_id')
+    posts_per_child = child_posts.groupby('child_id').count()
+    posts_per_lesson = lesson_posts.groupby('lesson_id').count()
+    posts_per_lesson = posts_per_lesson.reset_index()
+    posts_per_lesson['post_per_lesson_aka_popularity'] = posts_per_lesson['post_id']
+    posts_per_lesson = posts_per_lesson.drop('post_id', axis=1)
+    classrooms_merged = classrooms_merged.merge(posts_per_lesson, how='left', left_on='lesson_set_id', right_on='lesson_id')
+    posts_per_lesson = lesson_posts.groupby('lesson_id').count()
+    plt.hist(np.log(posts_per_lesson.sample(100).values), bins=30);
+    posts_per_lesson.head(3)
+    posts_per_lesson.rename(index=str, columns={"post_id": "posts_per_lesson"});
+    classrooms_merged = classrooms_merged.merge(posts_per_lesson, how='left', left_on='lesson_set_id', right_index=True)
+    teachers['teach_and_admin'] = (teachers['teacher']=='t') & (teachers['admin']=='t' )
+    teachers['is_teacher'] = teachers['teacher']=='t'
+    teachers['is_admin'] = teachers['admin']=='t'
+    teachers_per_class = teachers.groupby('default_classroom_id').sum()
+    teachers_per_class.head(3)
+    # THIS IS ALMOST DEFINITELY DATA LEAKAGE:
+    classrooms_merged = classrooms_merged.merge(teachers, how='left', left_on='classroom_id', right_index=True)
+    current_students_per_class = students[students['current']=='t'].groupby('classroom_id').count()
+    current_students_per_class.drop('current', axis=1)
+    current_students_per_class.rename({'child_id': 'num_current_children'});
+    old_students_per_class = students[students['current']=='f'].groupby('classroom_id').count()
+    old_students_per_class.drop('current', axis=1)
+    old_students_per_class.rename({'child_id': 'num_old_children'});
+    classrooms_merged = classrooms_merged.merge(current_students_per_class, how='left', left_on='classroom_id', right_index=True)
+    classrooms_merged = classrooms_merged.merge(old_students_per_class, how='left', left_on='classroom_id', right_index=True)
+    return classrooms_merged
+
+def merge_planning_events(posts_merge, planning_events):
+    # NOT YET USED
+    posts_merge = posts_merge.merge(planning_events, how='left', left_on)
+    planning_events.created_at = pd.to_datetime(planning_events.created_at)
+    planning_events['created_at'].apply(lambda x: isinstance(x, pd.Timestamp))
+    len(planning_events.created_by_id.unique())
+
 def main():
     # posts_per_lesson = make_posts_per_lesson(lesson_posts)
     # current_students_per_class = make_current_students_per_class(students)
@@ -140,7 +185,12 @@ def main():
     lesson_posts = load_lesson_posts()
     now = load_now()
     classrooms_merged_all_leaky = make_classrooms_merged(classrooms, posts, teachers, students, lesson_posts)
-    make_classrooms_merged_non_leaky = make_classrooms_merged_non_leaky(now, posts, child_posts)
+    make_classrooms_merged_non_leaky = make_classrooms_merged_non_leaky(now, posts, child_posts, lesson_posts, classrooms)
+    make_classrooms_merged_non_leaky.head()
+    # classrooms_merged.to_csv('../data/classrooms_merged_non_leak.csv')
+    classrooms_merged_3 = load_and_make_dataframe3(classrooms, posts, child_posts, teachers)
+    classrooms_merged_3.head()
+    # classrooms_merged.to_csv('../data/classrooms_merged.csv')
 
 if __name__ == "__main__":
     main()

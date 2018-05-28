@@ -58,30 +58,55 @@ def plot_log_days_with_not_zero_posts_between(posts, date1, date2):
     plt.show()
     return None
 
-def main():
-  plot_days_with_not_zero_posts_since(posts,
+def all_posts_since(posts):
+    plot_days_with_not_zero_posts_since(posts,
                                       pd.to_datetime("feb 15 2018"))
-  plot_log_days_with_not_zero_posts_since(posts,
+    plot_log_days_with_not_zero_posts_since(posts,
                                           pd.to_datetime("feb 15 2018"))
-  plot_days_with_not_zero_posts_since(posts,
+    plot_days_with_not_zero_posts_since(posts,
                                       pd.to_datetime("feb 15 2011"))
-  plot_log_days_with_not_zero_posts_since(posts,
+    plot_log_days_with_not_zero_posts_since(posts,
                                           pd.to_datetime("feb 15 2011"))
-  plot_days_with_not_zero_posts_between(posts,
+    plot_days_with_not_zero_posts_between(posts,
                                         pd.to_datetime("Feb 15 2018"),
                                         pd.to_datetime("Feb 16 2018"))
-  plot_days_with_not_zero_posts_between(posts,
+    plot_days_with_not_zero_posts_between(posts,
                                         pd.to_datetime("Jan 15 2018"),
                                         pd.to_datetime("Feb 15 2018"))
-  plot_log_days_with_not_zero_posts_between(posts,
+    plot_log_days_with_not_zero_posts_between(posts,
                                             pd.to_datetime("Dec 15 2017"),
                                             pd.to_datetime("Jan 15 2018"))
-  plot_days_with_not_zero_posts_between(posts, pd.to_datetime("Jan 15 2018"),
+    plot_days_with_not_zero_posts_between(posts, pd.to_datetime("Jan 15 2018"),
                                         pd.to_datetime("Feb 15 2018"))
-  plot_log_days_with_not_zero_posts_between(posts,
+    plot_log_days_with_not_zero_posts_between(posts,
                                             pd.to_datetime("FEB 15 2018"),
                                             pd.to_datetime("March 15 2018"))
-  return None
+
+def main():
+    posts = load_posts()
+    plot_days_with_not_zero_posts_since(posts,
+                                      pd.to_datetime("feb 15 2018"))
+    plot_log_days_with_not_zero_posts_since(posts,
+                                          pd.to_datetime("feb 15 2018"))
+    plot_days_with_not_zero_posts_since(posts,
+                                      pd.to_datetime("feb 15 2011"))
+    plot_log_days_with_not_zero_posts_since(posts,
+                                          pd.to_datetime("feb 15 2011"))
+    plot_days_with_not_zero_posts_between(posts,
+                                        pd.to_datetime("Feb 15 2018"),
+                                        pd.to_datetime("Feb 16 2018"))
+    plot_days_with_not_zero_posts_between(posts,
+                                        pd.to_datetime("Jan 15 2018"),
+                                        pd.to_datetime("Feb 15 2018"))
+    plot_log_days_with_not_zero_posts_between(posts,
+                                            pd.to_datetime("Dec 15 2017"),
+                                            pd.to_datetime("Jan 15 2018"))
+    plot_days_with_not_zero_posts_between(posts, pd.to_datetime("Jan 15 2018"),
+                                        pd.to_datetime("Feb 15 2018"))
+    plot_log_days_with_not_zero_posts_between(posts,
+                                            pd.to_datetime("FEB 15 2018"),
+                                            pd.to_datetime("March 15 2018"))
+    return None
 
 if __name__ == '__main__':
       main()

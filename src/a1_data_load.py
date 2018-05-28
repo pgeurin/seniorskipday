@@ -85,7 +85,7 @@ def load_now():
 
 def main():
     (teachers, students, classrooms, sessions, schools, posts, planning_events,
-    child_posts, lesson_posts, parents, classrooms_merged) = import_all()
+    child_posts, lesson_posts, parents, classrooms_merged) = load_all()
 
 
 if __name__ == "__main__":

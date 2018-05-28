@@ -48,12 +48,30 @@ def sessions_to_plots(sessions):
     return sum_sessions
 
 
+def find_cont_account(sessions):
+    continued_accounts = (sessions.groupby('school_id').agg(
+        {'stop_date' : [np.max]}) > pd.to_datetime("march 2018")).sum()
+    return continued_accounts
+
+
+def find_all_account(sessions):
+    total_accounts = len(sessions.groupby('school_id').agg(
+        {'stop_date' : [np.max]}) > pd.to_datetime("march 2018"))
+    return total_accounts
+
+
+def find_ended_sessions(sessions):
+    ended_accounts = sessions.groupby('school_id').agg(
+        {'stop_date' : [np.max]}) > pd.to_datetime("march 2018")
+    return ended_accounts
+
 def main():
     sessions = pd.read_csv('../data_january/sessions.csv')
     sessions['start_date'] = pd.to_datetime(sessions['start_date'])
     sessions['stop_date'] = pd.to_datetime(sessions['stop_date'])
     sessions['exists'] = 1
     sessions_to_plots(sessions)
+    find_ended_sessions(sessions)
     # make_session_plot(sessions)
     # sum_sessions = make_sum_sessions(sessions)
     # plot_one_session(sum_sessions, school_id=24)

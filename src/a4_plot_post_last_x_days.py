@@ -53,6 +53,17 @@ def plot_log_posts_between(posts, date1, date2):
     ax.set_xlabel("log(#) of posts")
     plt.show()
 
+def plot_all_posts_between(posts):
+    plot_posts_since(posts, pd.to_datetime("Feb 15 2018"))
+    plot_posts_since(posts, pd.to_datetime("Feb 15 2011"))
+    plot_posts_since(posts, pd.to_datetime("Jan 15 2018"))
+    plot_log_posts_since(posts, pd.to_datetime("jan 15 2018"))
+    plot_log_posts_since(posts, pd.to_datetime("feb 15 2018"))
+    plot_posts_between(posts, pd.to_datetime("Jan 15 2018"), pd.to_datetime("Feb 15 2018"))
+    plot_log_posts_between(posts, pd.to_datetime("Dec 15 2017"), pd.to_datetime("Jan 15 2018"))
+    plot_log_posts_between(posts, pd.to_datetime("Jan 15 2018"), pd.to_datetime("Feb 15 2018"))
+    plot_log_posts_between(posts, pd.to_datetime("FEB 15 2018"), pd.to_datetime("March 15 2018"))
+
 def main():
     posts = pd.read_csv('../data/posts.csv')
     posts['date'] = pd.to_datetime(posts.date, errors='coerce')
