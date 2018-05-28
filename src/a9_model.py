@@ -1,5 +1,7 @@
+import pandas as pd
 import datetime
 from datetime import timedelta
+from a1_data_load import load_posts, load_classrooms
 from a7_post_aggr import posts_between
 import autoregression
 import pickle
@@ -68,13 +70,22 @@ def drop_collumns(classrooms_merged_before):
     return classrooms_merged_before_dropped
 
 
-def make_classrooms_sum_hearts_before_now(classrooms_merged):
+
+def make_classrooms_sum_(classrooms_merged, full_y):
+    classrooms_sum_ = classrooms_merged.groupby('classroom_id').sum()
+    print(len(full_y))
+    print(len(classrooms_sum_))
+    classrooms_sum_['will_post_next_semester'] = (full_y>0)
+    return classrooms_sum_
+
+
+def make_classrooms_sum_hearts_before_now(classrooms_merged_before_now, y_hearts):
     classrooms_sum_before_now = classrooms_merged_before_now.groupby('classroom_id').sum()
-    classrooms_sum_before_now['hearts']= y_hearts
+    classrooms_sum_before_now['hearts'] = y_hearts
     return classrooms_sum_before_now
 
 
-def check_merge_lengths(classrooms, classrooms_merged, posts, classrooms_merged_before_now_dropped, classrooms_sum_before_now):
+def check_merge_lengths(classrooms, classrooms_merged, posts, classrooms_merged_before_now_dropped, classrooms_sum_before_now, y, full_y):
     unique_classrooms = len(classrooms.classroom_id.unique())
     unique_classroms_merged = len(classrooms_merged.classroom_id.unique()),
     num_y = len(y)
@@ -88,18 +99,20 @@ def check_merge_lengths(classrooms, classrooms_merged, posts, classrooms_merged_
 def merged_to_sum_before(classrooms_merged, now, y):
     classrooms_merged_before = make_classrooms_merged_before(classrooms_merged, now)
     classrooms_merged_before_dropped = drop_collumns(classrooms_merged_before)
-    classrooms_sum_before = make_classrooms_sum_(classrooms_merged_before_three_months_ago, y)
-    return classrooms_sum_before
+    classrooms_sum_before_dropped = make_classrooms_sum_(classrooms_merged_before_dropped, y)
+    return classrooms_sum_before_dropped
 
 
 def main():
+    posts = load_posts()
+    classrooms = load_classrooms()
     posts['year_month'] = pd.to_datetime(posts['date']).map(lambda dt: dt.replace(day=1))
     classrooms_merged = pd.read_csv('../data_january/classrooms_merged_non_leak.csv')
     now = pd.to_datetime('September 24, 2017')
     six_months = timedelta(days=365//2)
     # one_year = timedelta(days=365)
     last_month_posts_total = get_posts_total_between_with_zeros(posts, now, six_months)
-    # full_y, y = make_y_was_any_posts_between(posts, classrooms, now, six_months)
+    full_y, y = make_y_was_any_posts_between(posts, classrooms, now, six_months)
     # print(find_y_hearts(posts, now))
     # print(find_y_hearts(posts[posts['classroom_id']==1 | posts['classroom_id']==3], now))
     # y_hearts = get_all_y_hearts(posts, now)
@@ -107,11 +120,23 @@ def main():
     classrooms_merged_before_three_months_ago = make_classrooms_merged_before(classrooms_merged, now-timedelta(days=90))
     classrooms_merged_before_now_dropped = drop_collumns(classrooms_merged_before_now)
     classrooms_merged_before_three_months_ago = drop_collumns(classrooms_merged_before_three_months_ago)
-    check_merge_lengths(classrooms, classrooms_merged, posts, classrooms_merged_before_now_dropped, classrooms_sum_before_now)
-    classrooms_sum_hearts_before_three_months_ago = merged_to_sum_before(classrooms_merged, now-timedelta(days=90), y_hearts)
+    classrooms_sum_before_now = make_classrooms_merged_before(classrooms_merged, now)
+    classrooms_sum_before_now_dropped = make_classrooms_merged_before(classrooms_merged_before_now_dropped, now)
+    classrooms_sum_before_three_months_ago = make_classrooms_merged_before(classrooms_merged_before_three_months_ago, now)
+    check_merge_lengths(classrooms, classrooms_merged, posts, classrooms_merged_before_now_dropped, classrooms_sum_before_now, y, full_y)
+
+    classrooms_sum_before_three_months_ago = make_classrooms_sum_(classrooms_merged_before_three_months_ago, full_y)
+    classrooms_sum_before_now = make_classrooms_sum_(classrooms_merged, full_y)
+    # classrooms_sum_hearts_before_three_months_ago = merged_to_sum_before(classrooms_merged, now-timedelta(days=90), y_hearts)
     # classrooms_sum_hearts_before_three_months_ago = make_classrooms_sum_hearts_before_now(classrooms_merged_before_three_months_ago)
     # classrooms_sum_hearts_before_now = make_classrooms_sum_hearts_before_now(classrooms_merged)
-    names3, results3, models3, pipeline3, df_X3 = autoregression.compare_predictions(classrooms_sum_hearts_before_three_months_ago, 'will_post_next_semester')
+    # names3, results3, models3, pipeline3, df_X3 = autoregression.compare_predictions(classrooms_sum_hearts_before_three_months_ago, 'will_post_next_semester')
+    names2, results2, models2, pipeline2, df_X2 = autoregression.compare_predictions(classrooms_sum_before_three_months_ago, 'will_post_next_semester')
+
+    output = open('random_forrest.pkl', 'wb')
+    pickle.dump(models2[3], output)
+    output.close()
+    pd.to_csv(df_X2, 'df_X2.csv')
 
     # PICKEL:
     # output = open('ada_boost_classifier.pkl', 'wb')

@@ -7,10 +7,10 @@ def plot_posts_since(posts, date):
     last_month_posts = posts[posts['date']>date].groupby('classroom_id').count()
     num_posts_by_class = posts.groupby('classroom_id').sum()
     last_month_posts_total= num_posts_by_class.join(last_month_posts, how='left', lsuffix='_num_posts_by_class', rsuffix='_last_month_posts')
-    last_month_posts_total.loc[last_month_posts_total['id_last_month_posts'].isnull(),'exists_last_month_posts'] =0
+    last_month_posts_total.loc[last_month_posts_total['id_last_month_posts'].isnull(),'exists_last_month_posts'] = 0
     fig, ax = plt.subplots(1,1)
     ax.set_title(f'class posts since {date.date()}')
-    ax.hist(last_month_posts_total['exists_last_month_posts'],bins=40)
+    ax.hist(last_month_posts_total['exists_last_month_posts'].dropna(), bins=40)
     ax.set_ylabel("# of classes")
     ax.set_xlabel("# of posts")
     plt.show()
@@ -19,10 +19,10 @@ def plot_log_posts_since(posts, date):
     last_month_posts = posts[posts['date']>date].groupby('classroom_id').count()
     num_posts_by_class = posts.groupby('classroom_id').sum()
     last_month_posts_total= num_posts_by_class.join(last_month_posts, how='left', lsuffix='_num_posts_by_class', rsuffix='_last_month_posts')
-    last_month_posts_total.loc[last_month_posts_total['id_last_month_posts'].isnull(),'exists_last_month_posts'] =0
+    last_month_posts_total.loc[last_month_posts_total['id_last_month_posts'].isnull(),'exists_last_month_posts'] = 0
     fig, ax = plt.subplots(1,1)
     ax.set_title(f'class log(posts) since {date.date()}')
-    ax.hist(np.log(last_month_posts_total['exists_last_month_posts']+1), bins=40)
+    ax.hist(np.log(last_month_posts_total['exists_last_month_posts']+1).dropna(), bins=40)
     ax.set_ylabel("# of classes")
     ax.set_xlabel("log(#) of posts")
     plt.show()
@@ -35,7 +35,7 @@ def plot_posts_between(posts, date1, date2):
     last_month_posts_total.loc[last_month_posts_total['id_last_month_posts'].isnull(),'exists_last_month_posts'] =0
     fig, ax = plt.subplots(1,1)
     ax.set_title(f'class posts between {date1.date()} and {date2.date()}')
-    ax.hist(last_month_posts_total['exists_last_month_posts'], bins=40)
+    ax.hist(last_month_posts_total['exists_last_month_posts'].dropna(), bins=40)
     ax.set_ylabel("# of classes")
     ax.set_xlabel("# of posts")
     plt.show()
@@ -45,10 +45,10 @@ def plot_log_posts_between(posts, date1, date2):
     last_month_posts = posts[(date1 < posts['date']) & (posts['date'] < date2)].groupby('classroom_id').count()
     num_posts_by_class = posts.groupby('classroom_id').sum()
     last_month_posts_total= num_posts_by_class.join(last_month_posts, how='left', lsuffix='_num_posts_by_class', rsuffix='_last_month_posts')
-    last_month_posts_total.loc[last_month_posts_total['id_last_month_posts'].isnull(),'exists_last_month_posts'] =0
-    fig, ax = plt.subplots(1,1)
+    last_month_posts_total.loc[last_month_posts_total['id_last_month_posts'].isnull(),'exists_last_month_posts'] = 0
+    fig, ax = plt.subplots(1, 1)
     ax.set_title(f'class log(posts) between {date1.date()} and {date2.date()}')
-    ax.hist(np.log(last_month_posts_total['exists_last_month_posts']+1), bins=40)
+    ax.hist(np.log(last_month_posts_total['exists_last_month_posts']+1).dropna(), bins=40)
     ax.set_ylabel("# of classes")
     ax.set_xlabel("log(#) of posts")
     plt.show()
@@ -65,7 +65,7 @@ def plot_all_posts_between(posts):
     plot_log_posts_between(posts, pd.to_datetime("FEB 15 2018"), pd.to_datetime("March 15 2018"))
 
 def main():
-    posts = pd.read_csv('../data/posts.csv')
+    posts = pd.read_csv('../data_january/posts.csv')
     posts['date'] = pd.to_datetime(posts.date, errors='coerce')
     plot_all_posts_between(posts)
 

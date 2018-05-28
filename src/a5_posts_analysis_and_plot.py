@@ -62,16 +62,12 @@ def posts_to_plots(posts):
 
 def make_binary_graph(posts):
     posts['year_month'] = pd.to_datetime(posts['date']).map(lambda dt: dt.replace(day=1))
-    posts.groupby(['classroom_id','year_month']).count().head(3)
-
-    # pretty good so far, but I want those zeros
+    posts['classroom_id'] = posts['classroom_id'].astype(int)
     class_month_posts = posts.pivot_table(index='year_month',
-                         columns='classroom_id',
-                         values='exists',
-                         fill_value=0,
-                         aggfunc='count').unstack()
-    class_month_posts.head(3)
-
+                                          columns='classroom_id',
+                                          values='exists',
+                                          fill_value=0,
+                                          aggfunc='count').unstack()
     for classroom_id in list(
             class_month_posts.index.get_level_values(0).unique())[0:10]:
         fig, ax = plt.subplots(2, 1, figsize=(20, 3))
@@ -80,10 +76,13 @@ def make_binary_graph(posts):
         current_monthly_posts = class_month_posts[classroom_id].values
         ax[0].scatter(dates, current_monthly_posts > 0, s=1)
         ax[1].plot(dates, current_monthly_posts > 0)
-        ax[1].plot(class_month_posts[
-            class_month_posts['classroom_id'] == classroom_id
-            ].sort_values('date')['date'], class_month_posts[class_month_posts[
-                'classroom_id'] == classroom_id].sort_values('date'))
+        x = class_month_posts[
+                class_month_posts.index.get_level_values(0) == classroom_id
+                ]
+        x = x.index.get_level_values(1)
+        y = class_month_posts[
+                class_month_posts.index.get_level_values(0) == classroom_id]
+        ax[1].plot(x, y)
         ax[0].set_title(f"Class {classroom_id} score")
         ax[0].set_xlim("2011", "2018")
         ax[1].set_xlim("2011", "2018")
@@ -92,7 +91,7 @@ def make_binary_graph(posts):
 
 def main():
     posts = load_posts()
-    posts_to_plots(posts)
+    # posts_to_plots(posts)
     make_binary_graph(posts)
     # make_sparkline(sum_post, classroom_id=77)
     # make_sparkline(sum_post, classroom_id=852)

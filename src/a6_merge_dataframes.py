@@ -1,8 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from a1_data_load import (load_posts, load_classrooms, load_teachers,
-                       load_students, load_lesson_posts, load_now)
+                          load_students, load_lesson_posts, load_child_posts,
+                          load_now)
 import numpy as np
+
 
 def make_posts_per_lesson(lesson_posts):
     posts_per_lesson = lesson_posts.groupby('lesson_id').count()
@@ -130,7 +132,7 @@ def make_classrooms_merged_non_leaky(now, posts, child_posts, lesson_posts, clas
     return classrooms_merged
 
 
-def load_and_make_dataframe3(classrooms, posts, child_posts, teachers):
+def load_and_make_dataframe3(classrooms, posts, child_posts, teachers, lesson_posts, students):
     classrooms_merged = classrooms.merge(posts,how='outer', left_on='classroom_id', right_on='classroom_id')
     children_per_post = child_posts.groupby('post_id').count()
     children_per_post.describe()
@@ -183,12 +185,13 @@ def main():
     teachers = load_teachers()
     students = load_students()
     lesson_posts = load_lesson_posts()
+    child_posts = load_child_posts()
     now = load_now()
     classrooms_merged_all_leaky = make_classrooms_merged(classrooms, posts, teachers, students, lesson_posts)
-    make_classrooms_merged_non_leaky = make_classrooms_merged_non_leaky(now, posts, child_posts, lesson_posts, classrooms)
-    make_classrooms_merged_non_leaky.head()
+    classrooms_merged_non_leaky = make_classrooms_merged_non_leaky(now, posts, child_posts, lesson_posts, classrooms)
+    classrooms_merged_non_leaky.head()
     # classrooms_merged.to_csv('../data/classrooms_merged_non_leak.csv')
-    classrooms_merged_3 = load_and_make_dataframe3(classrooms, posts, child_posts, teachers)
+    classrooms_merged_3 = load_and_make_dataframe3(classrooms, posts, child_posts, teachers, lesson_posts, students)
     classrooms_merged_3.head()
     # classrooms_merged.to_csv('../data/classrooms_merged.csv')
 

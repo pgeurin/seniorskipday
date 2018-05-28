@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from a1_data_load import load_posts
+from a3_plot_days_where_posts import plot_days_with_not_zero_posts_between
 
 def posts_between(posts, date1, date2):
     # print('total posts in this timeframe = ' + str(sum((date1 < posts['date']) & (posts['date'] < date2))))
@@ -40,15 +42,21 @@ def plot_posts_between(posts):
     months = "jan, feb, mar, april, may, june, july, aug, sept, oct, nov, dec".split(',')
     for classroom_id in posts['classroom_id'].unique():
         for year in range(2011, 2018):
-            for i_month in range(months):
-                posts_between(posts, date1=pd.datetime(str(year) + months[i_month]), date2=pd.datetime(str(year) + months[i_month+3]))
+            for i_month in range(len(months)):
+                date1 = pd.to_datetime(str(year) + ' ' + months[i_month])
+                if i_month+3 > 11:
+                    date2 = pd.to_datetime(str(year+1) + ' ' + months[(i_month+3) % 11])
+                else:
+                    date2 = pd.to_datetime(str(year) + ' ' + months[i_month+3])
+                posts_between(posts, date1=date1, date2=date2)
                 plot_days_with_not_zero_posts_between(posts, date1, date2)
 
 def main():
-    posts = pd.read_csv('../data_january/posts.csv')
-    posts['exists']=1
-    posts.groupby(pd.Grouper(freq="M"), as_index=False).count()
-    posts.groupby([(posts['date'].year), (posts['date'].month)]).sum()
+    # posts = pd.read_csv('../data_january/posts.csv')
+    # posts['exists'] = 1
+    # posts.groupby(pd.Grouper(freq="M"), as_index=False).count()
+    # posts.groupby([(posts['date'].year), (posts['date'].month)]).sum()
+    posts = load_posts()
     plot_posts_between(posts)
 
 
