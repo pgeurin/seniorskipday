@@ -67,6 +67,31 @@ def drop_collumns(classrooms_merged_before):
     classrooms_merged_before_dropped = classrooms_merged_before.drop('inactive', axis=1).drop('post_id_y', axis=1).drop('Unnamed: 0', axis=1)
     return classrooms_merged_before_dropped
 
+
+def make_classrooms_sum_hearts_before_now(classrooms_merged):
+    classrooms_sum_before_now = classrooms_merged_before_now.groupby('classroom_id').sum()
+    classrooms_sum_before_now['hearts']= y_hearts
+    return classrooms_sum_before_now
+
+
+def check_merge_lengths(classrooms, classrooms_merged, posts, classrooms_merged_before_now_dropped, classrooms_sum_before_now):
+    unique_classrooms = len(classrooms.classroom_id.unique())
+    unique_classroms_merged = len(classrooms_merged.classroom_id.unique()),
+    num_y = len(y)
+    unique_posts = len(posts.classroom_id.unique())
+    num_full_y = len(full_y)
+    unique_classrooms_merged_before_now_dropped = len(classrooms_merged_before_now_dropped.classroom_id.unique())
+    unique_classrooms_sum_before_now = len(classrooms_sum_before_now.index.unique())
+    return unique_classrooms, unique_classroms_merged, num_y, unique_posts, num_full_y, unique_classrooms_merged_before_now_dropped, unique_classrooms_sum_before_now
+
+
+def merged_to_sum_before(classrooms_merged, now, y):
+    classrooms_merged_before = make_classrooms_merged_before(classrooms_merged, now)
+    classrooms_merged_before_dropped = drop_collumns(classrooms_merged_before)
+    classrooms_sum_before = make_classrooms_sum_(classrooms_merged_before_three_months_ago, y)
+    return classrooms_sum_before
+
+
 def main():
     posts['year_month'] = pd.to_datetime(posts['date']).map(lambda dt: dt.replace(day=1))
     classrooms_merged = pd.read_csv('../data_january/classrooms_merged_non_leak.csv')
@@ -82,6 +107,10 @@ def main():
     classrooms_merged_before_three_months_ago = make_classrooms_merged_before(classrooms_merged, now-timedelta(days=90))
     classrooms_merged_before_now_dropped = drop_collumns(classrooms_merged_before_now)
     classrooms_merged_before_three_months_ago = drop_collumns(classrooms_merged_before_three_months_ago)
+    check_merge_lengths(classrooms, classrooms_merged, posts, classrooms_merged_before_now_dropped, classrooms_sum_before_now)
+    classrooms_sum_hearts_before_three_months_ago = merged_to_sum_before(classrooms_merged, now-timedelta(days=90), y_hearts)
+    # classrooms_sum_hearts_before_three_months_ago = make_classrooms_sum_hearts_before_now(classrooms_merged_before_three_months_ago)
+    # classrooms_sum_hearts_before_now = make_classrooms_sum_hearts_before_now(classrooms_merged)
     names3, results3, models3, pipeline3, df_X3 = autoregression.compare_predictions(classrooms_sum_hearts_before_three_months_ago, 'will_post_next_semester')
 
     # PICKEL:

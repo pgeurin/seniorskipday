@@ -1,8 +1,8 @@
 import pandas as pd
 from a1_data_load import load_all, load_now
 from a2_sessions_analysis_and_plot import sessions_to_plots
-import a3_plot_days_where_posts
-import a4_plot_post_last_x_days
+from a3_plot_days_where_posts import all_posts_since
+from a4_plot_post_last_x_days import plot_all_posts_between
 from a5_posts_analysis_and_plot import posts_to_plots
 from a6_merge_dataframes import (make_classrooms_merged,
                                  make_classrooms_merged_non_leaky)
@@ -16,8 +16,8 @@ def main():
     (teachers, students, classrooms, sessions, schools, posts, planning_events,
      child_posts, lesson_posts, parents, classrooms_merged) = load_all()
     sessions_to_plots(sessions)
-    a3_plot_days_where_posts.main()
-    a4_plot_post_last_x_days.main()
+    all_posts_since(posts)
+    plot_all_posts_between(posts)
 
     posts_to_plots(posts)
     classrooms_merged_all_leaky = make_classrooms_merged(classrooms, posts,

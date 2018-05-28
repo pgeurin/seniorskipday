@@ -26,12 +26,25 @@ def main():
         '_'.join)
     classroom_stats_before_now.head()
     danger_classrooms.index = danger_classrooms.index.astype('int64')
-    classroom_stats = danger_classrooms[['y_hat']].merge(classroom_stats_before_now, how='left', left_index=True, right_index=True)
-    classroom_stats = classroom_stats.rename(index=str, columns={"y_hat": "Probabilty Zero Posts for next 6 months", "exists_sum": "# of posts"})
-    last_months_post = posts[posts['classroom_id'].isin([24]) & (now - timedelta(days=30) < posts['date']) & (posts['date'] < now)].groupby('classroom_id').count()['date']
+    classroom_stats = danger_classrooms[['y_hat']
+                                        ].merge(classroom_stats_before_now,
+                                                how='left',
+                                                left_index=True,
+                                                right_index=True)
+    classroom_stats = classroom_stats.rename(index=str,
+                                             columns={"y_hat":
+                                                      "Probabilty Zero Posts for next 6 months",
+                                                      "exists_sum":
+                                                      "# of posts"})
+    last_months_post = posts[
+        posts['classroom_id'].isin([24]) &
+        (now - timedelta(days=30) < posts['date']) & (posts['date'] < now)
+        ].groupby('classroom_id').count()['date']
     classroom_stats_with_danger_index = classroom_stats
     classroom_stats_with_danger_index['posts_in_last_month'] = last_months_post
     classroom_stats_with_danger_index['danger_index'] = classroom_stats_with_danger_index['posts_in_last_month'] * classroom_stats_with_danger_index['Probabilty Zero Posts for next 6 months']
     # classroom_stats_with_danger_index.to_csv('../data/classroom_stats_w_danger_index.csv')
+
+
 if __name__ == "__main__":
     main()

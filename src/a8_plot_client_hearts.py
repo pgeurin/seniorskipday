@@ -70,12 +70,9 @@ def show_heart_merge_deets(hearts_merged, classrooms_merged):
     print(len(classrooms_merged))
     print(hearts_merged.columns)
     return None
-show_heart_merge_deets(hearts_merged, classrooms_merged)
 
 
-def main():
-    posts = pd.read_csv('../data_january/posts.csv')
-    posts['exists'] = 1
+def make_merge_hearts(posts, classrooms_merged):
     sum_post = make_sum_post(posts)
     classrooms_merged = pd.read_csv('../data_january/classrooms_merged.csv')
     classrooms_merged = classrooms_merged.rename({'school_id_x': 'school_id'},
@@ -89,6 +86,16 @@ def main():
     hearts_merged = merge_hearts(classrooms_merged, hearts)
     hearts_merged.head()
     show_heart_merge_deets(hearts_merged, classrooms_merged)
+
+
+def main():
+    posts = pd.read_csv('../data_january/posts.csv')
+    posts['exists'] = 1
+    sum_post = make_sum_post(posts)
+    classrooms_merged = pd.read_csv('../data_january/classrooms_merged.csv')
+    classrooms_merged = classrooms_merged.rename({'school_id_x': 'school_id'},
+                                                 axis='columns')
+    make_merge_hearts(posts, classrooms_merged)
 
 
 if __name__ == "__main__":
