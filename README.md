@@ -36,7 +36,7 @@ http://seniorskip.com/ - (Data hidden for client, sorry)
 
 ## Tools
 
-![slide_technology](img/slide_technology.png)
+<img src="img/slide_technology.png" width="400"/>
  - autoregression
  - Scikit Learn
  - Pandas
@@ -50,7 +50,7 @@ http://seniorskip.com/ - (Data hidden for client, sorry)
 
 ## Data Source
 
-<img src="img/slide2_meet_transparent_classroom.png" width="600"/>
+<img src="img/slide2_meet_transparent_classroom.png" width="400"/>
 
 Transparent classroom’s database. Actual Data not available to the public, sorry. It's a series of tables, detailing posts, teachers, classrooms, lessons, and their relationship.
 
