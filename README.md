@@ -95,4 +95,4 @@ The application returns:
 
 ## Questions? Reach out!
 
-![slide5_philipgeurin.png](img/slide5_philipgeurin.png)
+![contact_philipgeurin.png](img/contact_philipgeurin.png)
